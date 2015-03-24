@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace='http://orange.com/api/partyManagement/tmf/v2/model/business' attributeFormDefault='unqualified' elementFormDefault='qualified' xmlns='http://orange.com/api/partyManagement/tmf/v2/model/business' xmlns:xsd='http://www.w3.org/2001/XMLSchema'>
+  <xsd:annotation id='sidTag'>
+    <xsd:appinfo></xsd:appinfo>
+  </xsd:annotation>
+  <xsd:element name='Individual' type='Individual' />
+  <xsd:element name='ExternalReference' type='ExternalReference' />
+  <xsd:element name='RelatedParty' type='RelatedParty' />
+  <xsd:element name='ContactMedium' type='ContactMedium' />
+  <xsd:element name='Medium' type='Medium' />
+  <xsd:element name='IndividualIdentification' type='IndividualIdentification' />
+  <xsd:element name='OtherName' type='OtherName' />
+  <xsd:element name='Characteristic' type='Characteristic' />
+  <xsd:element name='Disability' type='Disability' />
+  <xsd:element name='ValidFor' type='ValidFor' />
+  <xsd:element name='Organization' type='Organization' />
+  <xsd:element name='OrganizationIdentification' type='OrganizationIdentification' />
+  <xsd:element name='OrganizationParentRelationship' type='OrganizationParentRelationship' />
+  <xsd:element name='OrganizationChildRelationship' type='OrganizationChildRelationship' />
+  <xsd:element name='ExistsDuring' type='ExistsDuring' />
+  <xsd:complexType name='Individual'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='id' type='xsd:long' minOccurs='0' />
+      <xsd:element name='href' type='xsd:string' minOccurs='0' />
+      <xsd:element name='gender' type='xsd:string' minOccurs='0' />
+      <xsd:element name='placeOfBirth' type='xsd:string' minOccurs='0' />
+      <xsd:element name='countryOfBirth' type='xsd:string' minOccurs='0' />
+      <xsd:element name='nationality' type='xsd:string' minOccurs='0' />
+      <xsd:element name='maritalStatus' type='xsd:string' minOccurs='0' />
+      <xsd:element name='birthDate' type='xsd:dateTime' minOccurs='0' />
+      <xsd:element name='title' type='xsd:string' minOccurs='0' />
+      <xsd:element name='givenName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='familyName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='middleName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='fullName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='formattedName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='location' type='xsd:string' minOccurs='0' />
+      <xsd:element name='status' type='xsd:string' minOccurs='0' />
+      <xsd:element name='disability' type='Disability' minOccurs='0' maxOccurs='unbounded' />
+      <xsd:element name='characteristic' type='Characteristic' minOccurs='0' maxOccurs='unbounded' />
+      <xsd:element name='otherName' type='OtherName' minOccurs='0' maxOccurs='unbounded' />
+      <xsd:element name='individualIdentification' type='IndividualIdentification' minOccurs='0' maxOccurs='unbounded' />
+      <xsd:element name='externalReference' type='ExternalReference' minOccurs='0' maxOccurs='unbounded' />
+      <xsd:element name='relatedParty' type='RelatedParty' minOccurs='0' maxOccurs='unbounded' />
+      <xsd:element name='contactMedium' type='ContactMedium' minOccurs='0' maxOccurs='unbounded' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='ExternalReference'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='href' type='xsd:string' minOccurs='0' />
+      <xsd:element name='type' type='xsd:string' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='RelatedParty'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='id' type='xsd:string' minOccurs='0' />
+      <xsd:element name='href' type='xsd:string' minOccurs='0' />
+      <xsd:element name='role' type='xsd:string' minOccurs='0' />
+      <xsd:element name='name' type='xsd:string' minOccurs='0' />
+      <xsd:element name='validFor' type='ValidFor' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='ContactMedium'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='type' type='xsd:string' minOccurs='0' />
+      <xsd:element name='validFor' type='ValidFor' minOccurs='0' />
+      <xsd:element name='medium' type='Medium' minOccurs='0' />
+      <xsd:element name='preferred' type='xsd:string' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='Medium'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='city' type='xsd:string' minOccurs='0' />
+      <xsd:element name='country' type='xsd:string' minOccurs='0' />
+      <xsd:element name='postcode' type='xsd:string' minOccurs='0' />
+      <xsd:element name='stateOrProvince' type='xsd:string' minOccurs='0' />
+      <xsd:element name='streetOne' type='xsd:string' minOccurs='0' />
+      <xsd:element name='streetTwo' type='xsd:string' minOccurs='0' />
+      <xsd:element name='emailAddress' type='xsd:string' minOccurs='0' />
+      <xsd:element name='type' type='xsd:string' minOccurs='0' />
+      <xsd:element name='number' type='xsd:string' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='IndividualIdentification'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='type' type='xsd:string' minOccurs='0' />
+      <xsd:element name='identificationId' type='xsd:string' minOccurs='0' />
+      <xsd:element name='issuingAuthority' type='xsd:string' minOccurs='0' />
+      <xsd:element name='issuingDate' type='xsd:dateTime' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='OtherName'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='title' type='xsd:string' minOccurs='0' />
+      <xsd:element name='givenName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='familyName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='middleName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='fullName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='formattedName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='validFor' type='ValidFor' minOccurs='0' />
+      <xsd:element name='nameType' type='xsd:string' minOccurs='0' />
+      <xsd:element name='tradingName' type='xsd:string' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='Characteristic'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='name' type='xsd:string' minOccurs='0' />
+      <xsd:element name='value' type='xsd:string' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='Disability'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='disability' type='xsd:string' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='ValidFor'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='startDateTime' type='xsd:dateTime' minOccurs='0' />
+      <xsd:element name='endDateTime' type='xsd:dateTime' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='Organization'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='id' type='xsd:long' minOccurs='0' />
+      <xsd:element name='href' type='xsd:string' minOccurs='0' />
+      <xsd:element name='isLegalEntity' type='xsd:string' minOccurs='0' />
+      <xsd:element name='type' type='xsd:string' minOccurs='0' />
+      <xsd:element name='existsDuring' type='ExistsDuring' minOccurs='0' />
+      <xsd:element name='tradingName' type='xsd:string' minOccurs='0' />
+      <xsd:element name='nameType' type='xsd:string' minOccurs='0' />
+      <xsd:element name='status' type='xsd:string' minOccurs='0' />
+      <xsd:element name='otherName' type='OtherName' minOccurs='0' />
+      <xsd:element name='characteristic' type='Characteristic' minOccurs='0' />
+      <xsd:element name='organizationIdentification' type='OrganizationIdentification' minOccurs='0' />
+      <xsd:element name='externalReference' type='ExternalReference' minOccurs='0' maxOccurs='unbounded' />
+      <xsd:element name='relatedParty' type='RelatedParty' minOccurs='0' />
+      <xsd:element name='organizationParentRelationship' type='OrganizationParentRelationship' minOccurs='0' />
+      <xsd:element name='organizationChildRelationship' type='OrganizationChildRelationship' minOccurs='0' />
+      <xsd:element name='contactMedium' type='ContactMedium' minOccurs='0' maxOccurs='unbounded' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='OrganizationIdentification'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='type' type='xsd:string' minOccurs='0' />
+      <xsd:element name='identificationId' type='xsd:string' minOccurs='0' />
+      <xsd:element name='issuingAuthority' type='xsd:string' minOccurs='0' />
+      <xsd:element name='issuingDate' type='xsd:string' minOccurs='0' />
+      <xsd:element name='validFor' type='ValidFor' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='OrganizationParentRelationship'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='relationshipType' type='xsd:string' minOccurs='0' />
+      <xsd:element name='id' type='xsd:string' minOccurs='0' />
+      <xsd:element name='href' type='xsd:string' minOccurs='0' />
+      <xsd:element name='validFor' type='ValidFor' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='OrganizationChildRelationship'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='relationshipType' type='xsd:string' minOccurs='0' />
+      <xsd:element name='id' type='xsd:string' minOccurs='0' />
+      <xsd:element name='href' type='xsd:string' minOccurs='0' />
+      <xsd:element name='validFor' type='ValidFor' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:complexType name='ExistsDuring'>
+    <xsd:sequence minOccurs='1' maxOccurs='1'>
+      <xsd:element name='startDateTime' type='xsd:dateTime' minOccurs='0' />
+      <xsd:element name='endDateTime' type='xsd:dateTime' minOccurs='0' />
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
