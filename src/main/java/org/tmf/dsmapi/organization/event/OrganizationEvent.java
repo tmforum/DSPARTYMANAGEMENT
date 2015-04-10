@@ -16,8 +16,10 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import static org.codehaus.jackson.annotate.JsonAutoDetect.Visibility.ANY;
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonPropertyOrder;
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.tmf.dsmapi.commons.utils.CustomJsonDateSerializer;
 import org.tmf.dsmapi.individual.model.Organization;
@@ -25,13 +27,13 @@ import org.tmf.dsmapi.individual.model.Organization;
 @XmlRootElement
 @Entity
 @Table(name="Event_Organization")
-@JsonPropertyOrder(value = {"id", "eventTime", "eventType", "event"})
+//@JsonPropertyOrder(value = {"id", "eventTime", "eventType", "event"})
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class OrganizationEvent implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-//    @JsonIgnore
+    @JsonIgnore
     private String id;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -43,6 +45,7 @@ public class OrganizationEvent implements Serializable {
 
     private Organization event; //check for object
 
+    @JsonProperty("eventId")
     public String getId() {
         return id;
     }
@@ -67,6 +70,7 @@ public class OrganizationEvent implements Serializable {
         this.eventType = eventType;
     }
 
+    @JsonIgnore
     public Organization getEvent() {
         return event;
     }
@@ -79,5 +83,23 @@ public class OrganizationEvent implements Serializable {
     public String toString() {
         return "OrganizationEvent{" + "id=" + id + ", eventTime=" + eventTime + ", eventType=" + eventType + ", event=" + event + '}';
     }
+
+    @JsonAutoDetect(fieldVisibility = ANY)
+    class EventBody {
+        private Organization organization;
+        public Organization getIndividual() {
+            return organization;
+        }
+        public EventBody(Organization organization) { 
+        this.organization = organization;
+    }
+    
+       
+    }
+   @JsonProperty("event")
+   public OrganizationEvent.EventBody getEventBody() {
+       
+       return new OrganizationEvent.EventBody(getEvent() );
+   }
 
 }

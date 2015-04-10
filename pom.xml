@@ -19,7 +19,7 @@
         <jersey.version>2.15</jersey.version>
         <jackson.version>1.9.13</jackson.version>
         <eclipselink.version>2.5.2</eclipselink.version>
-	<jerseymedia.version>2.7</jerseymedia.version>
+		<jerseymedia.version>2.7</jerseymedia.version>
         <!-- Set the application name for this application -->
         <application.name>DSPartyManagement</application.name>
         <!-- Set main generated sources dir (part of build directory -->
@@ -56,7 +56,12 @@
             <version>${jersey.version}</version>
             <scope>provided</scope>           
         </dependency>        
-	<dependency>
+        <dependency>
+			<groupId>com.fasterxml.jackson.module</groupId>
+			<artifactId>jackson-module-jaxb-annotations</artifactId>
+			<version>2.5.2</version>
+		</dependency>            
+		<dependency>
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>${jerseymedia.version}</version>

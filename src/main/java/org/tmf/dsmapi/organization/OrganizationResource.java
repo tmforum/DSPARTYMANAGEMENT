@@ -60,8 +60,10 @@ public class OrganizationResource {
     @POST
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response create(Organization entity) throws BadUsageException {
+    public Response create(Organization entity) throws BadUsageException, UnknownResourceException {
         partyFacade.create(entity);
+        entity.setHref("href/".concat(Long.toString(entity.getId())));
+        partyFacade.edit(entity);
         publisher.createNotification(entity, new Date());
         // 201
         Response response = Response.status(Response.Status.CREATED).entity(entity).build();

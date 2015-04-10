@@ -1,5 +1,6 @@
 package org.tmf.dsmapi.individual;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -22,6 +23,13 @@ import org.tmf.dsmapi.individual.model.Individual;
 import org.tmf.dsmapi.individual.event.IndividualEvent;
 import org.tmf.dsmapi.individual.event.IndividualEventFacade;
 import org.tmf.dsmapi.individual.event.IndividualEventPublisherLocal;
+import org.tmf.dsmapi.individual.model.Characteristic;
+import org.tmf.dsmapi.individual.model.ContactMedium;
+import org.tmf.dsmapi.individual.model.Disability;
+import org.tmf.dsmapi.individual.model.ExternalReference;
+import org.tmf.dsmapi.individual.model.IndividualIdentification;
+import org.tmf.dsmapi.individual.model.OtherName;
+import org.tmf.dsmapi.individual.model.RelatedParty;
 
 @Stateless
 @Path("admin/individual")
@@ -178,6 +186,64 @@ public class IndividualAdminResource {
     @Path("event")
     public List<IndividualEvent> findAllEvents() {
         return eventFacade.findAll();
+    }
+    
+    @GET
+    @Produces({"application/json"})
+    @Path("proto")
+    public Individual proto() {
+        Individual individual = new Individual();
+        
+        Date bd = new Date();
+        individual.setBirthDate(bd);
+        
+        List<Characteristic> clist = new ArrayList<Characteristic>();
+        individual.setCharacteristic(clist);
+        
+        List<ContactMedium> cmlist  = new ArrayList<ContactMedium>();
+        individual.setContactMedium(cmlist);
+        
+        individual.setCountryOfBirth("CountryOfBirth");
+        
+        List<Disability> dis = new ArrayList<Disability>();  
+        individual.setDisability(dis);
+        
+        List<ExternalReference> er = new ArrayList<ExternalReference>();
+        individual.setExternalReference(er);
+        
+        individual.setFamilyName("FamilyName");
+        individual.setFormattedName("FormattedName");
+        individual.setFullName("FullName");
+        individual.setGender("Gender");
+        
+        individual.setGivenName("GivenName");
+        
+        individual.setHref("Href");
+        Long xxx = new Long(42);
+        
+        individual.setId(xxx);
+        
+        List<IndividualIdentification> ident = new ArrayList<IndividualIdentification>();      
+        individual.setIndividualIdentification(ident);
+        
+        individual.setLocation("Location");
+        individual.setMaritalStatus("MaritalStatus");
+        
+        individual.setMiddleName("MiddleName");
+        individual.setNationality("Nationality");
+        
+        List<OtherName> ot = new ArrayList<OtherName>();    
+        individual.setOtherName(ot);
+        
+        individual.setPlaceOfBirth("PlaceOfBirth");
+        
+        List<RelatedParty> rp = new ArrayList<RelatedParty>(); 
+                
+        individual.setRelatedParty(rp);
+        
+        individual.setStatus("Status");
+        individual.setTitle("Title");
+        return individual;
     }
 
     @DELETE

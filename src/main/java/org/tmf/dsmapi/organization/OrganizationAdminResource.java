@@ -1,6 +1,8 @@
 package org.tmf.dsmapi.organization;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,7 +20,14 @@ import javax.ws.rs.core.Response;
 import org.tmf.dsmapi.commons.exceptions.BadUsageException;
 import org.tmf.dsmapi.commons.exceptions.UnknownResourceException;
 import org.tmf.dsmapi.commons.jaxrs.Report;
+import org.tmf.dsmapi.individual.model.Characteristic;
+import org.tmf.dsmapi.individual.model.ExistsDuring;
+import org.tmf.dsmapi.individual.model.ExternalReference;
 import org.tmf.dsmapi.individual.model.Organization;
+import org.tmf.dsmapi.individual.model.OrganizationIdentification;
+import org.tmf.dsmapi.individual.model.OtherName;
+import org.tmf.dsmapi.individual.model.RelatedParty;
+import org.tmf.dsmapi.individual.model.ValidFor;
 import org.tmf.dsmapi.organization.event.OrganizationEvent;
 import org.tmf.dsmapi.organization.event.OrganizationEventFacade;
 import org.tmf.dsmapi.organization.event.OrganizationEventPublisherLocal;
@@ -180,6 +189,62 @@ public class OrganizationAdminResource {
         return eventFacade.findAll();
     }
 
+    @GET
+    @Produces({"application/json"})
+    @Path("proto")
+    public Organization proto() {
+        Organization organization = new Organization();
+        Long xxx = new Long(128);
+        organization.setId(xxx);
+        organization.setHref("href");
+        organization.setIsLegalEntity(true);
+        organization.setType("Company");
+        organization.setTradingName("Telekom");
+        organization.setNameType("Co.");
+        organization.setStatus("Initialized");
+        
+        ExistsDuring existsDuring = new ExistsDuring();
+        GregorianCalendar gc = new GregorianCalendar();
+        gc.set(2000, 01, 01);
+        existsDuring.setStartDateTime(gc.getTime());
+        existsDuring.setEndDateTime(new Date());
+        organization.setExistsDuring(existsDuring);
+        
+        OtherName otherName = new OtherName();
+        otherName.setNameType("Co.");
+        otherName.setTradingName("Orange");
+        ValidFor valid = new ValidFor();
+        valid.setStartDateTime(gc.getTime());
+        valid.setEndDateTime(new Date());
+        otherName.setValidFor(valid);
+        organization.setOtherName(otherName);
+        
+        Characteristic charac = new Characteristic();
+        charac.setName("industry");
+        charac.setValue("telecom");
+        organization.setCharacteristic(charac);
+        
+        OrganizationIdentification orgIdent = new OrganizationIdentification();
+        orgIdent.setIdentificationId("374748328");
+        orgIdent.setIssuingAuthority("");
+        orgIdent.setType("CompanyRegistrationNumber");
+        orgIdent.setValidFor(valid);
+        organization.setOrganizationIdentification(orgIdent);
+        
+        organization.setExternalReference(new ArrayList<ExternalReference>());
+        
+        RelatedParty relatedParty = new RelatedParty();
+        relatedParty.setHref("href");
+        relatedParty.setId("12");
+        relatedParty.setRole("Vendor");
+        relatedParty.setName("Vendor name");
+        relatedParty.setValidFor(valid);
+        organization.setRelatedParty(relatedParty);
+        
+        return organization;
+    }
+    
+    
     @DELETE
     @Path("event")
     public Report deleteAllEvent() {
