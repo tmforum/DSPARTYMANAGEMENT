@@ -1,0 +1,645 @@
+
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "version": "2.0",
+    "title": "usageManagement"
+  },
+  "host": "api-designer.rd.francetelecom.fr",
+  "basePath":	"/api-docs/usageManagement/tmf/v2",
+  "schemes": [
+      "http"
+  ],
+  "consumes": [
+      "application/json"
+  ],
+  "produces": [
+      "application/json"
+  ],  
+  "paths": {
+      
+      "/usage": {     
+            
+		"post": {
+      "tags": [
+         "usage"
+      ],            
+      "operationId": "createUsage",
+      "summary": "Create Usage resource",
+      "description": "",       
+      "deprecated": false,
+      "parameters": [
+      
+        
+        
+                      
+        {
+         "name": "usage",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/Usage"
+          }
+        }          
+      ],   
+      "responses": {
+        "201": {
+          "description": "Usage",
+          "schema": {
+            "$ref": "#/definitions/Usage"
+          }
+        }
+      }
+    }
+	
+      },    
+      "/usage/{usageId}": {     
+        
+		"delete": {
+      "tags": [
+         "usage"
+      ],    
+      "operationId": "deleteUsage",
+      "summary": "Delete Usage by id",
+      "description": "",
+      "deprecated": false,
+      "parameters": [
+      
+                                  
+        
+        {
+          "name": "usageId",
+          "in": "path",
+          "required": true,            
+          "type": "string"
+        }
+  
+        
+      ],   
+      "responses": {
+        "204": {
+          "description": "Success"
+          }  
+      }   
+    }
+	,
+		"get": {
+      "tags": [
+         "usage"
+      ],    
+      "operationId": "getUsage",
+      "summary": "Get Usage by id",
+      "description": "",
+      "deprecated": false,
+      "parameters": [
+      
+                                  
+        
+        {
+          "name": "usageId",
+          "in": "path",
+          "required": true,            
+          "type": "string"
+        }
+        
+
+      ],   
+      "responses": {
+        "200": {
+          "description": "List of Usage",
+          "schema": {
+            "$ref": "#/definitions/Usage"
+            }
+          }
+      }        
+    }     
+	,
+		"put": {
+      "tags": [
+         "usage"
+      ],            
+      "operationId": "updateUsage",
+      "summary": "Update Usage by id",
+      "description": "",      
+      "deprecated": false,
+      "parameters": [
+      
+                                  
+        
+        {
+          "name": "usageId",
+          "in": "path",
+          "required": true,            
+          "type": "string"
+        }
+  ,
+               
+        {
+         "name": "usage",
+         "in": "body",
+         "required": true,
+         "schema": {
+           "$ref": "#/definitions/Usage"
+         }
+        }                               
+      ],   
+      "responses": {
+        "201": {
+          "description": "Success Usage",
+          "schema": {
+            "$ref": "#/definitions/Usage"
+            }
+          }
+      }             
+    }
+	
+      },    
+      "/usageSpecification": {     
+            
+		"post": {
+      "tags": [
+         "usageSpecification"
+      ],            
+      "operationId": "createUsageSpecification",
+      "summary": "Create UsageSpecification resource",
+      "description": "",       
+      "deprecated": false,
+      "parameters": [
+      
+        
+        
+                      
+        {
+         "name": "usageSpecification",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/UsageSpecification"
+          }
+        }          
+      ],   
+      "responses": {
+        "201": {
+          "description": "UsageSpecification",
+          "schema": {
+            "$ref": "#/definitions/UsageSpecification"
+          }
+        }
+      }
+    }
+	
+      },    
+      "/usageSpecification/{usageSpecificationId}": {     
+        
+		"delete": {
+      "tags": [
+         "usageSpecification"
+      ],    
+      "operationId": "deleteUsageSpecification",
+      "summary": "Delete UsageSpecification by id",
+      "description": "",
+      "deprecated": false,
+      "parameters": [
+      
+                                  
+        
+        {
+          "name": "usageSpecificationId",
+          "in": "path",
+          "required": true,            
+          "type": "string"
+        }
+  
+        
+      ],   
+      "responses": {
+        "204": {
+          "description": "Success"
+          }  
+      }   
+    }
+	,
+		"get": {
+      "tags": [
+         "usageSpecification"
+      ],    
+      "operationId": "getUsageSpecification",
+      "summary": "Get UsageSpecification by id",
+      "description": "",
+      "deprecated": false,
+      "parameters": [
+      
+                                  
+        
+        {
+          "name": "usageSpecificationId",
+          "in": "path",
+          "required": true,            
+          "type": "string"
+        }
+        
+
+      ],   
+      "responses": {
+        "200": {
+          "description": "List of UsageSpecification",
+          "schema": {
+            "$ref": "#/definitions/UsageSpecification"
+            }
+          }
+      }        
+    }     
+	
+      }
+  },
+"definitions": {
+  
+
+    "Usage": {
+      
+      "type": "object",
+      "properties": {      
+      
+        "id": {
+          
+          "type": "integer",
+          "format": "int64"
+        }
+        ,
+        "href": {
+          
+          "type": "string"
+        }
+        ,
+        "date": {
+          
+          "type": "string",
+          "format": "date-time"
+        }
+        ,
+        "type": {
+          
+          "type": "string"
+        }
+        ,
+        "description": {
+          
+          "type": "string"
+        }
+        ,
+        "status": {
+          
+          "type": "string",    
+          "enum": [   
+          
+            "Received",
+            "Rejected",
+            "Recycled",
+            "Guided",
+            "Rated",
+            "Rerate",
+            "Billed"
+          ]
+  
+        }
+        ,
+        "usageSpecification": {
+          
+                "$ref": "#/definitions/UsageSpecification"
+  
+        }
+        ,
+        "usageCharacteristic": {
+          
+              "type": "array",
+              "items": {
+                  
+                "$ref": "#/definitions/UsageCharacteristic"
+  
+              }
+            
+        }
+        ,
+        "relatedParty": {
+          
+              "type": "array",
+              "items": {
+                  
+                "$ref": "#/definitions/RelatedParty"
+  
+              }
+            
+        }
+        ,
+        "ratedProductUsage": {
+          
+              "type": "array",
+              "items": {
+                  
+                "$ref": "#/definitions/RatedProductUsage"
+  
+              }
+            
+        }
+        
+      }
+    }
+                
+  ,
+  
+
+    "UsageSpecification": {
+      
+      "type": "object",
+      "properties": {      
+      
+        "id": {
+          
+          "type": "integer",
+          "format": "int64"
+        }
+        ,
+        "href": {
+          
+          "type": "string"
+        }
+        ,
+        "name": {
+          
+          "type": "string"
+        }
+        ,
+        "description": {
+          
+          "type": "string"
+        }
+        ,
+        "validFor": {
+          
+                "$ref": "#/definitions/ValidFor"
+  
+        }
+        ,
+        "usageSpecCharacteristic": {
+          
+              "type": "array",
+              "items": {
+                  
+                "$ref": "#/definitions/UsageSpecCharacteristic"
+  
+              }
+            
+        }
+        
+      }
+    }
+                
+  ,
+  
+
+    "RatedProductUsage": {
+      
+      "type": "object",
+      "properties": {      
+      
+        "ratingDate": {
+          
+          "type": "string",
+          "format": "date-time"
+        }
+        ,
+        "usageRatingTag": {
+          
+          "type": "string"
+        }
+        ,
+        "isBilled": {
+          
+          "type": "boolean"
+        }
+        ,
+        "ratingAmountType": {
+          
+          "type": "string"
+        }
+        ,
+        "taxIncludedRatingAmount": {
+          
+          "type": "number",
+          "format": "float"
+        }
+        ,
+        "taxExcludedRatingAmount": {
+          
+          "type": "number",
+          "format": "float"
+        }
+        ,
+        "taxRate": {
+          
+          "type": "number",
+          "format": "float"
+        }
+        ,
+        "isTaxExempt": {
+          
+          "type": "boolean"
+        }
+        ,
+        "offerTariffType": {
+          
+          "type": "string"
+        }
+        ,
+        "bucketValueConvertedInAmount": {
+          
+          "type": "number",
+          "format": "float"
+        }
+        ,
+        "currencyCode": {
+          
+          "type": "string"
+        }
+        ,
+        "productRef": {
+          
+          "type": "string"
+        }
+        
+      }
+    }
+                
+  ,
+  
+
+    "RelatedParty": {
+      
+      "type": "object",
+      "properties": {      
+      
+        "id": {
+          
+          "type": "string"
+        }
+        ,
+        "href": {
+          
+          "type": "string"
+        }
+        ,
+        "role": {
+          
+          "type": "string"
+        }
+        
+      }
+    }
+                
+  ,
+  
+
+    "UsageCharacteristic": {
+      
+      "type": "object",
+      "properties": {      
+      
+        "name": {
+          
+          "type": "string"
+        }
+        ,
+        "value": {
+          
+          "type": "string"
+        }
+        
+      }
+    }
+                
+  ,
+  
+
+    "UsageSpecCharacteristic": {
+      
+      "type": "object",
+      "properties": {      
+      
+        "name": {
+          
+          "type": "string"
+        }
+        ,
+        "description": {
+          
+          "type": "string"
+        }
+        ,
+        "configurable": {
+          
+          "type": "boolean"
+        }
+        ,
+        "usageSpecCharacteristicValue": {
+          
+              "type": "array",
+              "items": {
+                  
+                "$ref": "#/definitions/UsageSpecCharacteristicValue"
+  
+              }
+            
+        }
+        
+      }
+    }
+                
+  ,
+  
+
+    "UsageSpecCharacteristicValue": {
+      
+      "type": "object",
+      "properties": {      
+      
+        "valueType": {
+          
+          "type": "string"
+        }
+        ,
+        "default": {
+          
+          "type": "boolean"
+        }
+        ,
+        "value": {
+          
+          "type": "string"
+        }
+        ,
+        "valueFrom": {
+          
+          "type": "string"
+        }
+        ,
+        "valueTo": {
+          
+          "type": "string"
+        }
+        
+      }
+    }
+                
+  ,
+  
+
+    "ValidFor": {
+      
+      "type": "object",
+      "properties": {      
+      
+        "startDateTime": {
+          
+          "type": "string",
+          "format": "date-time"
+        }
+        ,
+        "endDateTime": {
+          
+          "type": "string",
+          "format": "date-time"
+        }
+        
+      }
+    }
+                
+  ,
+   
+    "Error": {
+      "required": [
+          "code",
+          "message"
+      ],      
+      "properties": {
+        "code": {
+          "description": "An integer coding the error type. This is given to caller so he can translate them if required.",
+          "type": "integer"
+        },
+        "message": {
+          "description": "A short localized string that describes the error.",
+          "type": "string"
+        },
+        "description": {
+          "description": "(optional) A long localized error description if needed. It can contain precise information about which parameter is missing, or what are the identifier acceptable values.",
+          "type": "string"
+        },
+        "infoURL": {
+          "description": "(optional) A URL to online documentation that provides more information about the error.",
+          "type": "string"
+        }
+      }
+    }
+  }
+}
+	
