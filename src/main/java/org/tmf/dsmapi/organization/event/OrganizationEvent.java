@@ -31,7 +31,7 @@ public class OrganizationEvent implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-//    @JsonIgnore
+    //@JsonIgnore
     private String id;
 
     @Temporal(TemporalType.TIMESTAMP)

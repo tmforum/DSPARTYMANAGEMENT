@@ -8,6 +8,7 @@
 
 package org.tmf.dsmapi.individual.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -150,6 +151,7 @@ public class Individual
     @Id
     @Column(name = "ID", scale = 0)
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonIgnore
     public Long getId() {
         return id;
     }

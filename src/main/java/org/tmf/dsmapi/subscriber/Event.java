@@ -28,6 +28,8 @@ public class Event extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
+        
+        System.out.println("---doPost---");
         EventBag notification = new EventBag();
         response.setContentType("application/json");
         notification.setDateEvent(new Date());
@@ -43,8 +45,11 @@ public class Event extends HttpServlet {
         String line = null;
         StringBuilder responseData = new StringBuilder();
         while ((line = in.readLine()) != null) {
+            System.out.println("---doPost---" + line + "\n");
             responseData.append(line);
         }
+        
+        
         notification.setEvent(responseData.toString().getBytes());
 
         try {

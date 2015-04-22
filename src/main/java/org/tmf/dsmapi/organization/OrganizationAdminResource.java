@@ -1,5 +1,6 @@
 package org.tmf.dsmapi.organization;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -18,7 +19,16 @@ import javax.ws.rs.core.Response;
 import org.tmf.dsmapi.commons.exceptions.BadUsageException;
 import org.tmf.dsmapi.commons.exceptions.UnknownResourceException;
 import org.tmf.dsmapi.commons.jaxrs.Report;
+import org.tmf.dsmapi.individual.model.Characteristic;
+import org.tmf.dsmapi.individual.model.ContactMedium;
+import org.tmf.dsmapi.individual.model.ExistsDuring;
+import org.tmf.dsmapi.individual.model.ExternalReference;
 import org.tmf.dsmapi.individual.model.Organization;
+import org.tmf.dsmapi.individual.model.OrganizationChildRelationship;
+import org.tmf.dsmapi.individual.model.OrganizationIdentification;
+import org.tmf.dsmapi.individual.model.OrganizationParentRelationship;
+import org.tmf.dsmapi.individual.model.OtherName;
+import org.tmf.dsmapi.individual.model.RelatedParty;
 import org.tmf.dsmapi.organization.event.OrganizationEvent;
 import org.tmf.dsmapi.organization.event.OrganizationEventFacade;
 import org.tmf.dsmapi.organization.event.OrganizationEventPublisherLocal;
@@ -179,6 +189,49 @@ public class OrganizationAdminResource {
     public List<OrganizationEvent> findAllEvents() {
         return eventFacade.findAll();
     }
+    
+    @GET
+    @Produces({"application/json"})
+    @Path("proto")
+    public Organization proto() {
+        Organization organization = new Organization();
+        Characteristic x = new  Characteristic();
+        organization.setCharacteristic(x);
+        
+        List<ContactMedium> cmlist  = new ArrayList<ContactMedium>();
+        organization.setContactMedium(cmlist);
+        
+        ExistsDuring xx = new ExistsDuring();
+        organization.setExistsDuring(xx);
+        
+        List<ExternalReference> erList  = new ArrayList<ExternalReference>();
+        organization.setExternalReference(erList);
+        
+        
+        organization.setHref("Href");
+        organization.setId(new Long(42));
+        organization.setIsLegalEntity("IsLegalEntity");
+        organization.setNameType("NameType");
+        OrganizationChildRelationship ock = new OrganizationChildRelationship();
+        organization.setOrganizationChildRelationship(ock);
+        
+        OrganizationIdentification oid = new OrganizationIdentification();
+                organization.setOrganizationIdentification(oid);
+        OrganizationParentRelationship orel = new OrganizationParentRelationship();
+                
+        organization.setOrganizationParentRelationship(orel);
+        OtherName cccc = new OtherName();
+        organization.setOtherName(cccc);
+        
+        RelatedParty cccccc = new RelatedParty();
+        organization.setRelatedParty(cccccc);
+        organization.setStatus("Status");
+        organization.setTradingName("TradingName");
+        organization.setType("Type");
+        return organization;
+        
+    }
+            
 
     @DELETE
     @Path("event")

@@ -26,7 +26,6 @@
 <resources>
     <jdbc-connection-pool driver-classname="" datasource-classname="com.mysql.jdbc.jdbc2.optional.MysqlDataSource" res-type="javax.sql.DataSource" name="ritmfpool">
         <property name="User" value="root"></property>
-        <property name="Password" value="toto"></property>
         <property name="ServerName" value="localhost"></property>
         <property name="PortNumber" value="3306"></property>
         <property name="databaseName" value="party_management_ritmf"/>
