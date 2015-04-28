@@ -27,7 +27,7 @@ public interface IndividualEventPublisherLocal {
      * @param reason the reason of the deletion
      * @param date the deletion date
      */
-    public void deletionNotification(Individual bean, Date date);
+    public void deleteNotification(Individual bean, Date date);
 
     /**
      *
@@ -38,12 +38,4 @@ public interface IndividualEventPublisherLocal {
      */
     public void updateNotification(Individual bean, Date date);
 
-    /**
-     *
-     * ValueChangeNotification
-     * @param bean the bean which has been changed
-     * @param reason the reason it was changed
-     * @param date the change date
-     */
-    public void valueChangedNotification(Individual bean, Date date);
 }

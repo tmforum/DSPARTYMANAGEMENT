@@ -71,8 +71,15 @@ public class HubResource {
 
     @DELETE
     @Path("{id}")
-    public void remove(@PathParam("id") String id) throws UnknownResourceException {
-        hubFacade.remove(id);
+    public Response remove(@PathParam("id") String id) throws UnknownResourceException {
+        Hub hub = hubFacade.find(id);
+        if (null == hub) {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        } else {
+            hubFacade.remove(id);
+            // 200 
+            return Response.ok(hub).build();
+        }
     }
 
     @GET
@@ -97,7 +104,7 @@ public class HubResource {
     @Path("proto/individual/event")
     public IndividualEvent protoindividualevent() {
         IndividualEvent event = new IndividualEvent();
-        IndividualEventTypeEnum x = IndividualEventTypeEnum.IndividualCreationNotification;
+        IndividualEventTypeEnum x = IndividualEventTypeEnum.IndividualCreateNotification;
         event.setEventType(x);
         event.setEventTime(new Date());
         event.setId("42");
@@ -153,7 +160,7 @@ public class HubResource {
         individual.setStatus("Status");
         individual.setTitle("Title");
 
-        event.setEvent(individual);
+        event.setResource(individual);
         return event;
     }
     
@@ -162,7 +169,7 @@ public class HubResource {
     @Path("proto/organization/event")
     public OrganizationEvent protoorganizationevent() {
         OrganizationEvent event = new OrganizationEvent();
-        OrganizationEventTypeEnum eventType = OrganizationEventTypeEnum.OrganizationCreationNotification;
+        OrganizationEventTypeEnum eventType = OrganizationEventTypeEnum.OrganizationCreateNotification;
         event.setEventType(eventType);
         event.setEventTime(new Date());
         event.setId("42");
@@ -200,7 +207,7 @@ public class HubResource {
         organization.setStatus("Status");
         organization.setTradingName("TradingName");
         organization.setType("Type");
-        event.setEvent(organization);
+        event.setResource(organization);
         return event;
     }
 

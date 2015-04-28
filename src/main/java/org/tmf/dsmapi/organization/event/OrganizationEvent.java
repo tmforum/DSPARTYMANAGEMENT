@@ -16,16 +16,18 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.codehaus.jackson.annotate.JsonAutoDetect;
+import static org.codehaus.jackson.annotate.JsonAutoDetect.Visibility.ANY;
 import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonPropertyOrder;
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.tmf.dsmapi.commons.utils.CustomJsonDateSerializer;
 import org.tmf.dsmapi.individual.model.Organization;
 
 @XmlRootElement
 @Entity
-@Table(name="Event_Organization")
-@JsonPropertyOrder(value = {"id", "eventTime", "eventType", "event"})
+@Table(name = "Event_Organization")
+//@JsonPropertyOrder(value = {"id", "eventTime", "eventType", "resource"})
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class OrganizationEvent implements Serializable {
 
@@ -33,16 +35,14 @@ public class OrganizationEvent implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     //@JsonIgnore
     private String id;
-
     @Temporal(TemporalType.TIMESTAMP)
     @JsonSerialize(using = CustomJsonDateSerializer.class)
     private Date eventTime;
-
     @Enumerated(value = EnumType.STRING)
     private OrganizationEventTypeEnum eventType;
+    private Organization resource; //check for object
 
-    private Organization event; //check for object
-
+    @JsonProperty("eventId")
     public String getId() {
         return id;
     }
@@ -67,17 +67,37 @@ public class OrganizationEvent implements Serializable {
         this.eventType = eventType;
     }
 
-    public Organization getEvent() {
-        return event;
+    @JsonIgnore
+    public Organization getResource() {
+        return resource;
     }
 
-    public void setEvent(Organization event) {
-        this.event = event;
+    public void setResource(Organization resource) {
+        this.resource = resource;
     }
 
     @Override
     public String toString() {
-        return "OrganizationEvent{" + "id=" + id + ", eventTime=" + eventTime + ", eventType=" + eventType + ", event=" + event + '}';
+        return "OrganizationEvent{" + "id=" + id + ", eventTime=" + eventTime + ", eventType=" + eventType + ", event=" + resource + '}';
     }
 
+    @JsonAutoDetect(fieldVisibility = ANY)
+    class EventBody {
+
+        private Organization organization;
+
+        public Organization getOrganization() {
+            return organization;
+        }
+
+        public EventBody(Organization organization) {
+            this.organization = organization;
+        }
+    }
+
+    @JsonProperty("event")
+    public EventBody getEvent() {
+
+        return new EventBody(getResource());
+    }
 }

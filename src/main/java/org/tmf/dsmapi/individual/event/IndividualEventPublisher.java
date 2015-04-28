@@ -60,18 +60,18 @@ public class IndividualEventPublisher implements IndividualEventPublisherLocal {
     public void createNotification(Individual bean, Date date) {
         IndividualEvent event = new IndividualEvent();
         event.setEventTime(date);
-        event.setEventType(IndividualEventTypeEnum.IndividualCreationNotification);
-        event.setEvent(bean);
+        event.setEventType(IndividualEventTypeEnum.IndividualCreateNotification);
+        event.setResource(bean);
         publish(event);
 
     }
 
     @Override
-    public void deletionNotification(Individual bean, Date date) {
+    public void deleteNotification(Individual bean, Date date) {
         IndividualEvent event = new IndividualEvent();
         event.setEventTime(date);
-        event.setEventType(IndividualEventTypeEnum.IndividualDeletionNotification);
-        event.setEvent(bean);
+        event.setEventType(IndividualEventTypeEnum.IndividualDeleteNotification);
+        event.setResource(bean);
         publish(event);
     }
 	
@@ -80,16 +80,8 @@ public class IndividualEventPublisher implements IndividualEventPublisherLocal {
         IndividualEvent event = new IndividualEvent();
         event.setEventTime(date);
         event.setEventType(IndividualEventTypeEnum.IndividualUpdateNotification);
-        event.setEvent(bean);
+        event.setResource(bean);
         publish(event);
     }
 
-    @Override
-    public void valueChangedNotification(Individual bean, Date date) {
-        IndividualEvent event = new IndividualEvent();
-        event.setEventTime(date);
-        event.setEventType(IndividualEventTypeEnum.IndividualValueChangeNotification);
-        event.setEvent(bean);
-        publish(event);
-    }
 }

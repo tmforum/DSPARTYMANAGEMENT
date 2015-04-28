@@ -21,7 +21,7 @@ public class CustomJsonDateSerializer extends JsonSerializer<Date>
     @Override
     public void serialize(Date aDate, JsonGenerator aJsonGenerator, SerializerProvider aSerializerProvider)
             throws IOException, JsonProcessingException {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SX");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssXXX");
         String dateString = dateFormat.format(aDate);
         aJsonGenerator.writeString(dateString);
     }

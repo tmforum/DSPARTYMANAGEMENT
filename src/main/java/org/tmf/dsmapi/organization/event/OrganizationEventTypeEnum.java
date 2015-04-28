@@ -6,10 +6,9 @@ package org.tmf.dsmapi.organization.event;
 
 public enum OrganizationEventTypeEnum {
 
-    OrganizationCreationNotification("OrganizationCreationNotification"),
+    OrganizationCreateNotification("OrganizationCreateNotification"),
     OrganizationUpdateNotification("OrganizationUpdateNotification"),
-    OrganizationDeletionNotification("OrganizationDeletionNotification"),
-    OrganizationValueChangeNotification("OrganizationValueChangeNotification");
+    OrganizationDeleteNotification("OrganizationDeleteNotification");
 
     private String text;
 

@@ -6,10 +6,9 @@ package org.tmf.dsmapi.individual.event;
 
 public enum IndividualEventTypeEnum {
 
-    IndividualCreationNotification("IndividualCreationNotification"),
+    IndividualCreateNotification("IndividualCreateNotification"),
     IndividualUpdateNotification("IndividualUpdateNotification"),
-    IndividualDeletionNotification("IndividualDeletionNotification"),
-    IndividualValueChangeNotification("IndividualValueChangeNotification");
+    IndividualDeleteNotification("IndividualDeleteNotification");
 
     private String text;
 

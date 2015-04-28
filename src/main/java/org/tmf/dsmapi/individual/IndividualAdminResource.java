@@ -96,7 +96,7 @@ public class IndividualAdminResource {
         if (party != null) {
             entity.setId(id);
             partyFacade.edit(entity);
-            publisher.valueChangedNotification(entity, new Date());
+            publisher.updateNotification(entity, new Date());
             // 201 OK + location
             response = Response.status(Response.Status.CREATED).entity(entity).build();
 
@@ -149,7 +149,7 @@ public class IndividualAdminResource {
             Individual entity = partyFacade.find(id);
 
             // Event deletion
-            publisher.deletionNotification(entity, new Date());
+            publisher.deleteNotification(entity, new Date());
             try {
                 //Pause for 4 seconds to finish notification
                 Thread.sleep(4000);
@@ -159,7 +159,7 @@ public class IndividualAdminResource {
             // remove event(s) binding to the resource
             List<IndividualEvent> events = eventFacade.findAll();
             for (IndividualEvent event : events) {
-                if (event.getEvent().getId().equals(id)) {
+                if (event.getResource().getId().equals(id)) {
                     eventFacade.remove(event.getId());
                 }
             }
@@ -269,7 +269,7 @@ public class IndividualAdminResource {
         int previousRows = eventFacade.count();
         List<IndividualEvent> events = eventFacade.findAll();
         for (IndividualEvent event : events) {
-            if (event.getEvent().getId().equals(id)) {
+            if (event.getResource().getId().equals(id)) {
                 eventFacade.remove(event.getId());
 
             }

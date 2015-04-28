@@ -45,9 +45,9 @@
 			"name": "hubApi",
 			"description": "",
 			"order": [
-				"e6b7443f-9533-c05a-01b3-7f75bece9197",
 				"406af6c2-5f77-71e4-7e02-6c8395c580e6",
-				"cae85dd8-af6b-3eb5-267e-993a2fb5714e"
+				"cae85dd8-af6b-3eb5-267e-993a2fb5714e",
+				"a262bdde-b064-c6d4-5382-e9b201ba7ea3"
 			],
 			"collection_name": "partyManagement",
 			"collection_id": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -65,7 +65,8 @@
 				"417adc08-a949-a102-bef5-7ab90457e82f",
 				"495b3af4-16e8-1658-e5bb-ef15aa023b6b",
 				"0404e241-c2bf-0274-5041-7050d4b08600",
-				"014dfe8a-b8a6-47de-009a-0464660fd5e8"
+				"014dfe8a-b8a6-47de-009a-0464660fd5e8",
+				"97617a9d-2ab2-ada2-c449-cf12aa8cacc8"
 			],
 			"collection_name": "partyManagement",
 			"collection_id": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -83,7 +84,8 @@
 				"815cc380-b791-fb73-5ec1-b43d50886dc9",
 				"7a17e6a3-bacd-e2fb-d230-33794a74704e",
 				"445031a0-40ac-4302-03ca-88396da70342",
-				"2582763b-33d0-72c7-bcd9-dd39d6402bee"
+				"2582763b-33d0-72c7-bcd9-dd39d6402bee",
+				"7cece8a0-a774-dfd0-ac80-1ae772a0d620"
 			],
 			"collection_name": "partyManagement",
 			"collection_id": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -97,6 +99,7 @@
 	"timestamp": 1426756967055,
 	"synced": false,
 	"owner": 0,
+	"sharedWithTeam": false,
 	"subscribed": false,
 	"remoteLink": "",
 	"public": false,
@@ -105,7 +108,7 @@
 		{
 			"id": "0018e49b-9bc1-cade-9b8b-b53b33b91aa1",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/admin/individual/count",
+			"url": "{{partyManagementAdminApi}}/individual/count",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -115,7 +118,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427194592424,
+			"time": 1430233409754,
 			"name": "count",
 			"description": "count all resources",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -125,7 +128,7 @@
 		{
 			"id": "014dfe8a-b8a6-47de-009a-0464660fd5e8",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/party/v2/individual/:id",
+			"url": "{{partyManagementApi}}/individual/:id",
 			"preRequestScript": "",
 			"pathVariables": {
 				"id": "1"
@@ -137,7 +140,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1426758498387,
+			"time": 1430226177761,
 			"name": "/individual/{id}",
 			"description": "Delete one individual with id",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -148,7 +151,7 @@
 		{
 			"id": "0404e241-c2bf-0274-5041-7050d4b08600",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/partyManagement/v2/individual/:id",
+			"url": "{{partyManagementApi}}/individual/:id",
 			"preRequestScript": "",
 			"pathVariables": {
 				"id": "30"
@@ -160,7 +163,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427191497475,
+			"time": 1430226165359,
 			"name": "/individual/{id}",
 			"description": "total update of individual with id",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -171,7 +174,7 @@
 		{
 			"id": "15e8cda6-fc01-fcb7-c89a-fed074be350a",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://{{Host}}/DSPartyManagement/subscriber/api/history",
+			"url": "{{partyManagementSubscriberApi}}/history",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -181,7 +184,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1426759336252,
+			"time": 1430233348453,
 			"name": "/history",
 			"description": "List all",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -191,7 +194,7 @@
 		{
 			"id": "2582763b-33d0-72c7-bcd9-dd39d6402bee",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/partyManagement/v2/organization/:id",
+			"url": "{{partyManagementApi}}/organization/:id",
 			"preRequestScript": "",
 			"pathVariables": {
 				"id": "1"
@@ -203,7 +206,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427194860011,
+			"time": 1430233283082,
 			"name": "/organization/{id}",
 			"description": "partial update of organization with id",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -214,7 +217,7 @@
 		{
 			"id": "26bb9740-1a0c-5cb8-30fb-45f5827d2fde",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/admin/individual/:id",
+			"url": "{{partyManagementAdminApi}}/individual/:id",
 			"preRequestScript": "",
 			"pathVariables": {
 				"id": "1"
@@ -225,7 +228,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427194626391,
+			"time": 1430233444240,
 			"name": "delete one",
 			"description": "delete a resource with id",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -235,7 +238,7 @@
 		{
 			"id": "406af6c2-5f77-71e4-7e02-6c8395c580e6",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://{{Host}}/DSPartyManagement/api/partyManagement/v2/hub",
+			"url": "{{partyManagementApi}}/hub",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -245,7 +248,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427191315611,
+			"time": 1430226671171,
 			"name": "/hub",
 			"description": "select all hubs",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -255,7 +258,7 @@
 		{
 			"id": "417adc08-a949-a102-bef5-7ab90457e82f",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/partyManagement/v2/individual",
+			"url": "{{partyManagementApi}}/individual",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -265,7 +268,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427191248298,
+			"time": 1430226142247,
 			"name": "/individual",
 			"description": "create a individual",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -276,7 +279,7 @@
 		{
 			"id": "445031a0-40ac-4302-03ca-88396da70342",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/partyManagement/v2/organization/:id",
+			"url": "{{partyManagementApi}}/organization/:id",
 			"preRequestScript": "",
 			"pathVariables": {
 				"id": "1"
@@ -288,7 +291,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427194463423,
+			"time": 1430233271337,
 			"name": "/organization/{id}",
 			"description": "total update of organization with id",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -299,7 +302,7 @@
 		{
 			"id": "495b3af4-16e8-1658-e5bb-ef15aa023b6b",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/partyManagement/v2/individual/:id",
+			"url": "{{partyManagementApi}}/individual/:id",
 			"preRequestScript": "",
 			"pathVariables": {
 				"id": "1"
@@ -311,7 +314,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427191260114,
+			"time": 1430226151880,
 			"name": "/individual/{id}",
 			"description": "partiel update of individual with id",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -322,7 +325,7 @@
 		{
 			"id": "7a17e6a3-bacd-e2fb-d230-33794a74704e",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/partyManagement/v2/organization",
+			"url": "{{partyManagementApi}}/organization",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -332,7 +335,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427194282876,
+			"time": 1430233245190,
 			"name": "/organization",
 			"description": "create a organization",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -341,9 +344,30 @@
 			"rawModeData": "{\r\n  \"href\": \"http://serverlocation:port/partyManagement/organization/128\",\r\n  \"isLegalEntity\": true,\r\n  \"type\": \"Company\",\r\n  \"existsDuring\": {\r\n    \"startDateTime\": \"2013-04-19T16:42:23.0Z\"\r\n  },\r\n  \"tradingName\": \"Telekom\",\r\n  \"nameType\": \"Co.\",\r\n  \"status\": \"Initialized\",\r\n  \"otherName\": {\r\n    \"nameType\": \"Co.\",\r\n    \"tradingName\": \"Orange\",\r\n    \"validFor\": {\r\n      \"startDateTime\": \"2013-04-19T16:42:23.0Z\",\r\n      \"endDateTime\": \"2013-06-19T00:00:00.0Z\"\r\n    }\r\n  },\r\n  \"characteristic\": {\r\n    \"name\": \"industry\",\r\n    \"value\": \"telecom\"\r\n  },\r\n  \"organizationIdentification\": {\r\n    \"type\": \"CompanyRegistrationNumber\",\r\n    \"identificationId\": \"374748328\",\r\n    \"issuingAuthority\": \"\",\r\n    \"issuingDate\": \"2013-06-19T00:00:00.0Z\",\r\n    \"validFor\": {\r\n      \"startDateTime\": \"2013-04-19T16:42:23.0Z\",\r\n      \"endDateTime\": \"2013-06-19T00:00:00.0Z\"\r\n    }\r\n  },\r\n  \"externalReference\": [\r\n    {\r\n      \"href\": \"http://facebook.com/17263635\",\r\n      \"type\": \"FacebookID\"\r\n    },\r\n    {\r\n      \"href\": \"http://google.com/17263635\",\r\n      \"type\": \"GoogleID\"\r\n    }\r\n  ],\r\n  \"relatedParty\": {\r\n    \"id\": \"12\",\r\n    \"href\": \"http://serverlocation:port/partyManagement/organization/12\",\r\n    \"role\": \"Vendor\",\r\n    \"name\": \"Richard Cole\",\r\n    \"validFor\": {\r\n      \"startDateTime\": \"2013-04-19T16:42:23.0Z\",\r\n      \"endDateTime\": \"2013-06-19T00:00:00.0Z\"\r\n    }\r\n  },\r\n  \"organizationParentRelationship\": {\r\n    \"relationshipType\": \"Juridical\",\r\n    \"id\": \"13\",\r\n    \"href\": \"http://serverlocation:port/partyManagement/organization/13\",\r\n    \"validFor\": {\r\n      \"startDateTime\": \"2013-04-19T16:42:23.0Z\",\r\n      \"endDateTime\": \"2013-06-19T00:00:00.0Z\"\r\n    }\r\n  },\r\n  \"organizationChildRelationship\": {\r\n    \"relationshipType\": \"Juridical\",\r\n    \"id\": \"16\",\r\n    \"href\": \"http://serverlocation:port/partyManagement/organization/16\",\r\n    \"validFor\": {\r\n      \"startDateTime\": \"2013-04-19T16:42:23.0Z\",\r\n      \"endDateTime\": \"2013-06-19T00:00:00.0Z\"\r\n    }\r\n  },\r\n  \"contactMedium\": [\r\n    {\r\n      \"type\": \"Email\",\r\n      \"validFor\": {\r\n        \"startDateTime\": \"2013-04-19T16:42:23.0Z\"\r\n      },\r\n      \"medium\": {\r\n        \"emailAddress\": \"abc@tmforum.com\"\r\n      }\r\n    },\r\n    {\r\n      \"type\": \"PostalAddress\",\r\n      \"validFor\": {\r\n        \"startDateTime\": \"2013-04-19T16:42:23.0Z\"\r\n      },\r\n      \"medium\": {\r\n        \"city\": \"Wien\",\r\n        \"country\": \"Austria\",\r\n        \"postcode\": \"1020\",\r\n        \"stateOrProvince\": \"Quebec\",\r\n        \"streetOne\": \"Lassallestrasse7\",\r\n        \"streetTwo\": \"\"\r\n      }\r\n    },\r\n    {\r\n      \"type\": \"TelephoneNumber\",\r\n      \"validFor\": {\r\n        \"startDateTime\": \"2013-04-19T16:42:23.0Z\"\r\n      },\r\n      \"medium\": {\r\n        \"type\": \"mobile\",\r\n        \"number\": \"+436641234567\"\r\n      }\r\n    },\r\n    {\r\n      \"preferred\": true,\r\n      \"type\": \"TelephoneNumber\",\r\n      \"validFor\": {\r\n        \"startDateTime\": \"2013-04-19T16:42:23.0Z\"\r\n      },\r\n      \"medium\": {\r\n        \"type\": \"business\",\r\n        \"number\": \"+436641234567\"\r\n      }\r\n    }\r\n  ]\r\n}"
 		},
 		{
+			"id": "7cece8a0-a774-dfd0-ac80-1ae772a0d620",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"url": "{{partyManagementApi}}/hub",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1430233860403,
+			"name": "/hub",
+			"description": "create a hub",
+			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
+			"responses": [],
+			"synced": false,
+			"rawModeData": "{\n  \"callback\":\"{{partyManagementSubscriberApi}}/event\",\n  \"query\":\"eventType=OrganizationCreateNotification,OrganizationUpdateNotification,OrganizationDeleteNotification\"\n}"
+		},
+		{
 			"id": "815cc380-b791-fb73-5ec1-b43d50886dc9",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/partyManagement/v2/organization/:id",
+			"url": "{{partyManagementApi}}/organization/:id",
 			"preRequestScript": "",
 			"pathVariables": {
 				"id": "1"
@@ -355,7 +379,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427191572601,
+			"time": 1430233233890,
 			"name": "/organization/{id}",
 			"description": "select one organization with id",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -363,9 +387,33 @@
 			"synced": false
 		},
 		{
+			"id": "97617a9d-2ab2-ada2-c449-cf12aa8cacc8",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"url": "{{partyManagementApi}}/hub",
+			"preRequestScript": "",
+			"pathVariables": {},
+			"method": "POST",
+			"data": [],
+			"dataMode": "raw",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1430226738666,
+			"name": "/hub",
+			"description": "create a hub",
+			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
+			"responses": [],
+			"synced": false,
+			"folder": "4ad030e2-487e-775f-a835-905dad237783",
+			"isFromCollection": true,
+			"collectionRequestId": "97617a9d-2ab2-ada2-c449-cf12aa8cacc8",
+			"rawModeData": "{\n  \"callback\":\"{{partyManagementSubscriberApi}}/event\",\n  \"query\":\"eventType=IndividualCreateNotification,IndividualUpdateNotification,IndividualDeleteNotification\"\n}"
+		},
+		{
 			"id": "9ddbac92-0d55-d053-f82a-e7ffe5d0047f",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/partyManagement/v2/individual/:id",
+			"url": "{{partyManagementApi}}/individual/:id",
 			"preRequestScript": "",
 			"pathVariables": {
 				"id": "1"
@@ -377,7 +425,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427136020684,
+			"time": 1430226122372,
 			"name": "/individual/{id}",
 			"description": "select one individual with id",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -385,9 +433,30 @@
 			"synced": false
 		},
 		{
+			"id": "a262bdde-b064-c6d4-5382-e9b201ba7ea3",
+			"headers": "Content-Type: application/json\nAccept: application/json\n",
+			"url": "{{partyManagementApi}}/hub/:id",
+			"preRequestScript": "",
+			"pathVariables": {
+				"id": "1"
+			},
+			"method": "DELETE",
+			"dataMode": "binary",
+			"version": 2,
+			"tests": "",
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1430233765791,
+			"name": "delete a hub with id",
+			"description": "delete a hub",
+			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
+			"responses": [],
+			"synced": false
+		},
+		{
 			"id": "c70cda59-a238-3c19-e1b4-81f56fc3921f",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://{{Host}}/DSPartyManagement/subscriber/api/current",
+			"url": "{{partyManagementSubscriberApi}}/current",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -397,7 +466,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1426759131749,
+			"time": 1430233339178,
 			"name": "/current",
 			"description": "get last event",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -407,7 +476,7 @@
 		{
 			"id": "cae85dd8-af6b-3eb5-267e-993a2fb5714e",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://{{Host}}/DSPartyManagement/api/partyManagement/v2/hub",
+			"url": "{{partyManagementApi}}/hub",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "DELETE",
@@ -416,7 +485,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427191362641,
+			"time": 1430226650560,
 			"name": "delete all hubs",
 			"description": "delete all hubs",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -426,7 +495,7 @@
 		{
 			"id": "cc6db7b9-2518-e952-3069-b7d756f66078",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/admin/individual",
+			"url": "{{partyManagementAdminApi}}/individual",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -436,7 +505,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427194603169,
+			"time": 1430233419207,
 			"name": "create list",
 			"description": "create a list",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -447,7 +516,7 @@
 		{
 			"id": "d2f789f8-49ca-2202-8555-21b0b8dd6021",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/admin/individual/event",
+			"url": "{{partyManagementAdminApi}}/individual/event",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "DELETE",
@@ -456,7 +525,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427194690544,
+			"time": 1430233463200,
 			"name": "delete all events",
 			"description": "delete all events",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -466,7 +535,7 @@
 		{
 			"id": "d980f6d8-ac7c-03cf-0a87-6f3767c65b08",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/admin/individual",
+			"url": "{{partyManagementAdminApi}}/individual",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "DELETE",
@@ -475,7 +544,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427194677224,
+			"time": 1430233454629,
 			"name": "delete all",
 			"description": "delete all resources",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -483,30 +552,9 @@
 			"synced": false
 		},
 		{
-			"id": "e6b7443f-9533-c05a-01b3-7f75bece9197",
-			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://{{Host}}/DSPartyManagement/api/partyManagement/v2/hub",
-			"preRequestScript": "",
-			"pathVariables": {},
-			"method": "POST",
-			"data": [],
-			"dataMode": "raw",
-			"version": 2,
-			"tests": "",
-			"currentHelper": "normal",
-			"helperAttributes": {},
-			"time": 1427191334893,
-			"name": "/hub",
-			"description": "create a hub",
-			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
-			"responses": [],
-			"synced": false,
-			"rawModeData": "{\n  \"callback\":\"http://localhost:8080/DSPartyManagement/subscriber/api/event\",\n  \"query\":\"eventType=IndividualCreationNotification,IndividualUpdateNotification,IndividualDeletionNotification,IndividualValueChangeNotification\"\n}"
-		},
-		{
 			"id": "e83fa06e-8c6f-2bca-c4b2-f1a7181eb8bf",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/admin/individual",
+			"url": "{{partyManagementAdminApi}}/individual",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "GET",
@@ -516,7 +564,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427194652791,
+			"time": 1430233398444,
 			"name": "find all",
 			"description": "find all resources",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -526,7 +574,7 @@
 		{
 			"id": "edb7ee3c-2b03-6390-b58e-4890a12f300a",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://localhost:8080/DSPartyManagement/api/admin/individual",
+			"url": "{{partyManagementAdminApi}}/individual",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "POST",
@@ -536,7 +584,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1427194617889,
+			"time": 1430233433953,
 			"name": "create one",
 			"description": "create one",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",
@@ -547,7 +595,7 @@
 		{
 			"id": "ff57efc0-5ef1-132a-0363-c2db92ec55c0",
 			"headers": "Content-Type: application/json\nAccept: application/json\n",
-			"url": "http://{{Host}}/DSPartyManagement/subscriber/api/history",
+			"url": "{{partyManagementSubscriberApi}}/history",
 			"preRequestScript": "",
 			"pathVariables": {},
 			"method": "DELETE",
@@ -557,7 +605,7 @@
 			"tests": "",
 			"currentHelper": "normal",
 			"helperAttributes": {},
-			"time": 1426759343459,
+			"time": 1430233357853,
 			"name": "/history",
 			"description": "delete all",
 			"collectionId": "237a5c93-e297-d606-0173-ad4065a70595",

@@ -98,7 +98,7 @@ public class OrganizationAdminResource {
         if (party != null) {
             entity.setId(id);
             partyFacade.edit(entity);
-            publisher.valueChangedNotification(entity, new Date());
+            publisher.updateNotification(entity, new Date());
             // 201 OK + location
             response = Response.status(Response.Status.CREATED).entity(entity).build();
 
@@ -151,7 +151,7 @@ public class OrganizationAdminResource {
             Organization entity = partyFacade.find(id);
 
             // Event deletion
-            publisher.deletionNotification(entity, new Date());
+            publisher.deleteNotification(entity, new Date());
             try {
                 //Pause for 4 seconds to finish notification
                 Thread.sleep(4000);
@@ -161,7 +161,7 @@ public class OrganizationAdminResource {
             // remove event(s) binding to the resource
             List<OrganizationEvent> events = eventFacade.findAll();
             for (OrganizationEvent event : events) {
-                if (event.getEvent().getId().equals(id)) {
+                if (event.getResource().getId().equals(id)) {
                     eventFacade.remove(event.getId());
                 }
             }
@@ -256,7 +256,7 @@ public class OrganizationAdminResource {
         int previousRows = eventFacade.count();
         List<OrganizationEvent> events = eventFacade.findAll();
         for (OrganizationEvent event : events) {
-            if (event.getEvent().getId().equals(id)) {
+            if (event.getResource().getId().equals(id)) {
                 eventFacade.remove(event.getId());
 
             }

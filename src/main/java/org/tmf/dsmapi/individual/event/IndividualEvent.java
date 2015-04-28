@@ -30,13 +30,13 @@ import org.tmf.dsmapi.individual.model.Individual;
 @XmlRootElement
 @Entity
 @Table(name="Event_Individual")
-//@JsonPropertyOrder(value = {"eventTime", "eventType", "event"})
+//@JsonPropertyOrder(value = {"eventTime", "eventType", "resource"})
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 public class IndividualEvent implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
+//    @JsonIgnore
     private String id;
 
     @Temporal(TemporalType.TIMESTAMP)
@@ -47,7 +47,7 @@ public class IndividualEvent implements Serializable {
     private IndividualEventTypeEnum eventType;
 
     
-    private Individual event; //check for object
+    private Individual resource; //check for object
 
     @JsonProperty("eventId")
     public String getId() {
@@ -75,17 +75,17 @@ public class IndividualEvent implements Serializable {
     }
     
     @JsonIgnore
-    public Individual getEvent() {
-        return event;
+    public Individual getResource() {
+        return resource;
     }
  
-    public void setEvent(Individual event) {
-        this.event = event;
+    public void setResource(Individual resource) {
+        this.resource = resource;
     }
 
     @Override
     public String toString() {
-        return "IndividualEvent{" + "id=" + id + ", eventTime=" + eventTime + ", eventType=" + eventType + ", event=" + event + '}';
+        return "IndividualEvent{" + "id=" + id + ", eventTime=" + eventTime + ", eventType=" + eventType + ", event=" + resource + '}';
     }
     
     @JsonAutoDetect(fieldVisibility = ANY)
@@ -101,9 +101,9 @@ public class IndividualEvent implements Serializable {
        
     }
    @JsonProperty("event")
-   public EventBody getEventBody() {
+   public EventBody getEvent() {
        
-       return new EventBody(getEvent() );
+       return new EventBody(getResource() );
    }
 
 }

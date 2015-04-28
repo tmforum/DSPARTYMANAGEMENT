@@ -60,18 +60,18 @@ public class OrganizationEventPublisher implements OrganizationEventPublisherLoc
     public void createNotification(Organization bean, Date date) {
         OrganizationEvent event = new OrganizationEvent();
         event.setEventTime(date);
-        event.setEventType(OrganizationEventTypeEnum.OrganizationCreationNotification);
-        event.setEvent(bean);
+        event.setEventType(OrganizationEventTypeEnum.OrganizationCreateNotification);
+        event.setResource(bean);
         publish(event);
 
     }
 
     @Override
-    public void deletionNotification(Organization bean, Date date) {
+    public void deleteNotification(Organization bean, Date date) {
         OrganizationEvent event = new OrganizationEvent();
         event.setEventTime(date);
-        event.setEventType(OrganizationEventTypeEnum.OrganizationDeletionNotification);
-        event.setEvent(bean);
+        event.setEventType(OrganizationEventTypeEnum.OrganizationDeleteNotification);
+        event.setResource(bean);
         publish(event);
     }
 	
@@ -80,16 +80,8 @@ public class OrganizationEventPublisher implements OrganizationEventPublisherLoc
         OrganizationEvent event = new OrganizationEvent();
         event.setEventTime(date);
         event.setEventType(OrganizationEventTypeEnum.OrganizationUpdateNotification);
-        event.setEvent(bean);
+        event.setResource(bean);
         publish(event);
     }
 
-    @Override
-    public void valueChangedNotification(Organization bean, Date date) {
-        OrganizationEvent event = new OrganizationEvent();
-        event.setEventTime(date);
-        event.setEventType(OrganizationEventTypeEnum.OrganizationValueChangeNotification);
-        event.setEvent(bean);
-        publish(event);
-    }
 }

@@ -25,14 +25,10 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
 import org.tmf.dsmapi.commons.exceptions.BadUsageException;
-import org.tmf.dsmapi.commons.exceptions.ExceptionType;
 import org.tmf.dsmapi.commons.exceptions.UnknownResourceException;
 import org.tmf.dsmapi.commons.jaxrs.PATCH;
-import org.tmf.dsmapi.commons.utils.BeanUtils;
 import org.tmf.dsmapi.commons.utils.Jackson;
 import org.tmf.dsmapi.commons.utils.URIParser;
 import org.tmf.dsmapi.individual.model.Individual;
@@ -60,8 +56,11 @@ public class IndividualResource {
     @POST
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response create(Individual entity) throws BadUsageException {
+    public Response create(Individual entity) throws BadUsageException, UnknownResourceException {
+        partyFacade.checkCreationUpdate(entity);
         partyFacade.create(entity);
+        entity.setHref("href/".concat(Long.toString(entity.getId())));
+        partyFacade.edit(entity);
         publisher.createNotification(entity, new Date());
         // 201
         Response response = Response.status(Response.Status.CREATED).entity(entity).build();
@@ -152,13 +151,14 @@ public class IndividualResource {
     @Path("{id}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response update(@PathParam("id") long id, Individual entity) throws UnknownResourceException {
+    public Response update(@PathParam("id") long id, Individual entity) throws UnknownResourceException, BadUsageException {
         Response response = null;
         Individual party = partyFacade.find(id);
         if (party != null) {
             entity.setId(id);
+            partyFacade.checkCreationUpdate(entity);
             partyFacade.edit(entity);
-            publisher.valueChangedNotification(entity, new Date());
+            publisher.updateNotification(entity, new Date());
             // 201 OK + location
             response = Response.status(Response.Status.CREATED).entity(entity).build();
 
@@ -184,7 +184,7 @@ public class IndividualResource {
             Individual entity = partyFacade.find(id);
 
             // Event deletion
-            publisher.deletionNotification(entity, new Date());
+            publisher.deleteNotification(entity, new Date());
             try {
                 //Pause for 4 seconds to finish notification
                 Thread.sleep(4000);
@@ -194,7 +194,7 @@ public class IndividualResource {
             // remove event(s) binding to the resource
             List<IndividualEvent> events = eventFacade.findAll();
             for (IndividualEvent event : events) {
-                if (event.getEvent().getId().equals(id)) {
+                if (event.getResource().getId().equals(id)) {
                     eventFacade.remove(event.getId());
                 }
             }

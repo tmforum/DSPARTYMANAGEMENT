@@ -34,8 +34,8 @@ public abstract class AbstractFacade<T> {
 
 
     private Class<T> entityClass;
-    private static final String pattern = "yyyy-MM-dd'T'HH:mm:ssZ";
-    private static SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+//    private static final String pattern = "yyyy-MM-dd'T'HH:mm:ssZ";
+//    private static SimpleDateFormat formatter = new SimpleDateFormat(pattern);
 
     /**
      *

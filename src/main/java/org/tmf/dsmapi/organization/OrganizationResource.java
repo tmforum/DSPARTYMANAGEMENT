@@ -17,7 +17,6 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
-import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -25,19 +24,14 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
-import org.codehaus.jackson.JsonNode;
-import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.node.ObjectNode;
 import org.tmf.dsmapi.commons.exceptions.BadUsageException;
 import org.tmf.dsmapi.commons.exceptions.UnknownResourceException;
 import org.tmf.dsmapi.commons.jaxrs.PATCH;
-import org.tmf.dsmapi.commons.utils.BeanUtils;
 import org.tmf.dsmapi.commons.utils.Jackson;
 import org.tmf.dsmapi.commons.utils.URIParser;
-import org.tmf.dsmapi.individual.model.Individual;
 import org.tmf.dsmapi.individual.model.Organization;
 import org.tmf.dsmapi.organization.event.OrganizationEventPublisherLocal;
-import org.tmf.dsmapi.organization.event.OrganizationEvent;
 import org.tmf.dsmapi.organization.event.OrganizationEventFacade;
 
 @Stateless
@@ -60,8 +54,11 @@ public class OrganizationResource {
     @POST
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response create(Organization entity) throws BadUsageException {
+    public Response create(Organization entity) throws BadUsageException, UnknownResourceException {
+        partyFacade.checkCreationUpdate(entity);
         partyFacade.create(entity);
+        entity.setHref("href/".concat(Long.toString(entity.getId())));
+        partyFacade.edit(entity);
         publisher.createNotification(entity, new Date());
         // 201
         Response response = Response.status(Response.Status.CREATED).entity(entity).build();
@@ -152,13 +149,14 @@ public class OrganizationResource {
     @Path("{id}")
     @Consumes({"application/json"})
     @Produces({"application/json"})
-    public Response update(@PathParam("id") long id, Organization entity) throws UnknownResourceException {
+    public Response update(@PathParam("id") long id, Organization entity) throws UnknownResourceException, BadUsageException {
         Response response = null;
         Organization party = partyFacade.find(id);
         if (party != null) {
             entity.setId(id);
+            partyFacade.checkCreationUpdate(entity);
             partyFacade.edit(entity);
-            publisher.valueChangedNotification(entity, new Date());
+            publisher.updateNotification(entity, new Date());
             // 201 OK + location
             response = Response.status(Response.Status.CREATED).entity(entity).build();
 

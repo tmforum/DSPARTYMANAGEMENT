@@ -4,12 +4,13 @@
  */
 package org.tmf.dsmapi.commons.utils;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
+import java.util.Map;
 import org.apache.commons.beanutils.PropertyUtilsBean;
 import org.codehaus.jackson.JsonNode;
+import static org.tmf.dsmapi.commons.utils.BeanUtils.getNodesName;
+import static org.tmf.dsmapi.commons.utils.BeanUtils.patch;
 
 /**
  *
@@ -52,89 +53,60 @@ public class BeanUtils {
      * @param patchBean
      * @param node
      */
-//    public static void patch(Object bean, Object patch, JsonNode node) {
-//        String name;
-//        JsonNode child;
-//        Object value;
-//        Object patchValue;
-//        Iterator<String> it = node.getFieldNames();
-//        while (it.hasNext()) {
-//            name = it.next();
-//            patchValue = BeanUtils.getNestedProperty(patch, name);
-//            child = node.get(name);
-//            if (child.isObject()) {
-//                value = BeanUtils.getNestedProperty(bean, name);
-//                if (value != null) {
-//                    patch(value, patchValue, child);
-//                    BeanUtils.setNestedProperty(bean, name, value);
-//                } else {
-//                    BeanUtils.setNestedProperty(bean, name, patchValue);
-//                }
-//            } else {
-//                BeanUtils.setNestedProperty(bean, name, patchValue);
-//            }
-//        }
-//    }    
-    public static boolean patch(Object bean, Object patch, JsonNode node) {
+    public static boolean patch(Object currentBean, Object patchBean, JsonNode node) {
         String name;
-        JsonNode child;
+        JsonNode childNode;
         Object value;
         Object patchValue;
         Iterator<String> it = node.getFieldNames();
-        boolean isModified=false;
+        boolean isModified = false;
         while (it.hasNext()) {
             name = it.next();
-            patchValue = BeanUtils.getNestedProperty(patch, name);
-            child = node.get(name);
+            patchValue = BeanUtils.getNestedProperty(patchBean, name);
+            childNode = node.get(name);
             if (null != patchValue) {
-                if (child.isArray()) {
-                    if (!((ArrayList) patchValue).isEmpty()) {
-                        value = BeanUtils.getNestedProperty(bean, name);
-                        patch(value, patchValue, child);
-                        BeanUtils.setNestedProperty(bean, name, patchValue);
-                        isModified=true;
+                if (childNode.isArray() && !childNode.isNull()) {
+                    for (final JsonNode nodeArray : childNode) {
+                        value = BeanUtils.getNestedProperty(currentBean, name);
+                        patch(value, patchValue, nodeArray);
+                        BeanUtils.setNestedProperty(currentBean, name, patchValue);
+                        isModified = true;
                     }
                 } else {
-                    value = BeanUtils.getNestedProperty(bean, name);
-                    patch(value, patchValue, child);
-                    BeanUtils.setNestedProperty(bean, name, patchValue);
-                    isModified=true;
+                    value = BeanUtils.getNestedProperty(currentBean, name);
+                    patch(value, patchValue, childNode);
+                    BeanUtils.setNestedProperty(currentBean, name, patchValue);
+                    isModified = true;
                 }
             }
         }
         return isModified;
     }
 
-    public static boolean verify(Object patch, JsonNode node, String attribut) {
+    public static List<String> getNodesName(JsonNode node, Object patchBean, String beanName, List<String> l_resourceName) {
         boolean find = false;
-        String name;
-        JsonNode child;
-        Object value;
-        Object patchValue;
-        Iterator<String> it = node.getFieldNames();
-        while (it.hasNext()) {
-            name = it.next();
-            patchValue = BeanUtils.getNestedProperty(patch, name);
-            child = node.get(name);
-            if (child.isArray()) {
-                if (!((ArrayList) patchValue).isEmpty()) {
-                    if (name.equalsIgnoreCase(attribut)) {
-                        find = true;
-                        break;
-                    }
-//                    value = BeanUtils.getNestedProperty(patch, name);
-//                    verify(value, child, attribut);
+        String resourceName;
+        JsonNode childNode;
+        Iterator<Map.Entry<String, JsonNode>> itMap = node.getFields();
+        while (itMap.hasNext() && !find) {
+            Map.Entry entry = (Map.Entry) itMap.next();
+            resourceName = beanName.concat(".").concat((String) entry.getKey());
+            childNode = (JsonNode) entry.getValue();
+            l_resourceName.add(resourceName);
+            if (childNode.isArray() && !childNode.isNull()) {
+                for (final JsonNode nodeArray : childNode) {
+                    getNodesName(nodeArray, patchBean, resourceName, l_resourceName);
                 }
             } else {
-//                Logger.getLogger("VERIFY").log(Level.INFO, "NAME : " + name);
-//                Logger.getLogger("VERIFY").log(Level.INFO, "CHILD : " + child);
-                if (name.equalsIgnoreCase(attribut)) {
-                    find = true;
-                    break;
+                if (childNode.isObject() && !childNode.isNull()) {
+                    getNodesName(childNode, patchBean, resourceName, l_resourceName);
+
                 }
             }
+//            Logger.getLogger("VERIFY").log(Level.INFO, "KEY : " + entry.getKey());
+//            Logger.getLogger("VERIFY").log(Level.INFO, "VALUE : " + entry.getValue());
         }
-        return find;
+        return l_resourceName;
     }
 
 }

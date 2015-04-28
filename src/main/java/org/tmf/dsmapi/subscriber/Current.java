@@ -30,9 +30,12 @@ public class Current extends HttpServlet {
         ServletOutputStream servletOut = response.getOutputStream();
         EventBag mostRecentNotif = null;
         for (int i = 0; events.size() > i; i++) {
-            mostRecentNotif = events.get(i);
-            if (events.get(i).getDateEvent().after(mostRecentNotif.getDateEvent())) {
+            if (null == mostRecentNotif) {
                 mostRecentNotif = events.get(i);
+            } else {
+                if (events.get(i).getDateEvent().after(mostRecentNotif.getDateEvent())) {
+                    mostRecentNotif = events.get(i);
+                }
             }
         }
         if (null != mostRecentNotif) {

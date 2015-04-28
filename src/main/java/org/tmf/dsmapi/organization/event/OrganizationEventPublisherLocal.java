@@ -27,7 +27,7 @@ public interface OrganizationEventPublisherLocal {
      * @param reason the reason of the deletion
      * @param date the deletion date
      */
-    public void deletionNotification(Organization bean, Date date);
+    public void deleteNotification(Organization bean, Date date);
 
     /**
      *
@@ -38,12 +38,4 @@ public interface OrganizationEventPublisherLocal {
      */
     public void updateNotification(Organization bean, Date date);
 
-    /**
-     *
-     * ValueChangeNotification
-     * @param bean the bean which has been changed
-     * @param reason the reason it was changed
-     * @param date the change date
-     */
-    public void valueChangedNotification(Organization bean, Date date);
 }
