@@ -208,7 +208,7 @@ public class OrganizationAdminResource {
         organization.setExternalReference(erList);
         
         
-        organization.setHref("Href");
+        organization.setHref("http://serverLocalisation:port/DSPartyManagement/api/partyManagement/v2/organization/42");
         organization.setId(new Long(42));
         organization.setIsLegalEntity("IsLegalEntity");
         organization.setNameType("NameType");

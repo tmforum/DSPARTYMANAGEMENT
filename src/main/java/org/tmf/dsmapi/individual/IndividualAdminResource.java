@@ -218,7 +218,7 @@ public class IndividualAdminResource {
         
         individual.setGivenName("GivenName");
         
-        individual.setHref("Href");
+        individual.setHref("http://serverLocalisation:port/DSPartyManagement/api/partyManagement/v2/individual/42");
         Long xxx = new Long(42);
         
         individual.setId(xxx);

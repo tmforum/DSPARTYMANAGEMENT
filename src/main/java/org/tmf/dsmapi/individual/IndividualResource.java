@@ -59,7 +59,7 @@ public class IndividualResource {
     public Response create(Individual entity) throws BadUsageException, UnknownResourceException {
         partyFacade.checkCreationUpdate(entity);
         partyFacade.create(entity);
-        entity.setHref("href/".concat(Long.toString(entity.getId())));
+        entity.setHref("http://serverLocalisation:port/DSPartyManagement/api/partyManagement/v2/individual/".concat(Long.toString(entity.getId())));
         partyFacade.edit(entity);
         publisher.createNotification(entity, new Date());
         // 201

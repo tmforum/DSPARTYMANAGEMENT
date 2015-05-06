@@ -134,9 +134,8 @@ public class HubResource {
 
         individual.setGivenName("GivenName");
 
-        individual.setHref("Href");
+        individual.setHref("http://serverLocalisation:port/DSPartyManagement/api/partyManagement/v2/individual/42");
         Long xxx = new Long(42);
-
         individual.setId(xxx);
 
         List<IndividualIdentification> ident = new ArrayList<IndividualIdentification>();
@@ -187,7 +186,7 @@ public class HubResource {
         organization.setExternalReference(erList);
         
         
-        organization.setHref("Href");
+        organization.setHref("http://serverLocalisation:port/DSPartyManagement/api/partyManagement/v2/organization/42");
         organization.setId(new Long(42));
         organization.setIsLegalEntity("IsLegalEntity");
         organization.setNameType("NameType");
