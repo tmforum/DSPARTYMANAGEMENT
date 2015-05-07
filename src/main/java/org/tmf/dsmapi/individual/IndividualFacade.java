@@ -63,7 +63,8 @@ public class IndividualFacade extends AbstractFacade<Individual> {
                     "familyName is mandatory");
         }
 
-        if (null != newIndividual.getDisability()) {
+        if (null != newIndividual.getDisability()
+                && ! newIndividual.getDisability().isEmpty()) {
             for (Disability disability : newIndividual.getDisability()) {
                 if (null == disability.getDisability()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -72,7 +73,8 @@ public class IndividualFacade extends AbstractFacade<Individual> {
             }
         }
 
-        if (null != newIndividual.getCharacteristic()) {
+        if (null != newIndividual.getCharacteristic()
+                && ! newIndividual.getCharacteristic().isEmpty()) {
             for (Characteristic characteristic : newIndividual.getCharacteristic()) {
                 if (null == characteristic.getName()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -85,7 +87,8 @@ public class IndividualFacade extends AbstractFacade<Individual> {
             }
         }
 
-        if (null != newIndividual.getIndividualIdentification()) {
+        if (null != newIndividual.getIndividualIdentification()
+                && ! newIndividual.getIndividualIdentification().isEmpty()) {
             for (IndividualIdentification individualIdentification : newIndividual.getIndividualIdentification()) {
                 if (null == individualIdentification.getIdentificationId()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -98,7 +101,8 @@ public class IndividualFacade extends AbstractFacade<Individual> {
             }
         }
 
-        if (null != newIndividual.getExternalReference()) {
+        if (null != newIndividual.getExternalReference()
+                && ! newIndividual.getExternalReference().isEmpty()) {
             for (ExternalReference externalReference : newIndividual.getExternalReference()) {
                 if (null == externalReference.getHref()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -111,7 +115,8 @@ public class IndividualFacade extends AbstractFacade<Individual> {
             }
         }
 
-        if (null != newIndividual.getRelatedParty()) {
+        if (null != newIndividual.getRelatedParty()
+                && ! newIndividual.getRelatedParty().isEmpty()) {
             for (RelatedParty relatedParty : newIndividual.getRelatedParty()) {
                 if (null == relatedParty.getRole()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -154,7 +159,8 @@ public class IndividualFacade extends AbstractFacade<Individual> {
                     "disability is mandatory");
         }
 
-        if (null != partialIndividual.getCharacteristic()) {
+        if (null != partialIndividual.getCharacteristic()
+                && ! partialIndividual.getCharacteristic().isEmpty()) {
             for (Characteristic characteristic : partialIndividual.getCharacteristic()) {
                 if (null == characteristic.getName()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -167,7 +173,8 @@ public class IndividualFacade extends AbstractFacade<Individual> {
             }
         }
 
-        if (null != partialIndividual.getIndividualIdentification()) {
+        if (null != partialIndividual.getIndividualIdentification()
+                && !partialIndividual.getIndividualIdentification().isEmpty()) {
             for (IndividualIdentification individualIdentification : partialIndividual.getIndividualIdentification()) {
                 if (null == individualIdentification.getIdentificationId()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -180,7 +187,8 @@ public class IndividualFacade extends AbstractFacade<Individual> {
             }
         }
 
-        if (null != partialIndividual.getExternalReference()) {
+        if (null != partialIndividual.getExternalReference()
+                && !partialIndividual.getExternalReference().isEmpty()) {
             for (ExternalReference externalReference : partialIndividual.getExternalReference()) {
                 if (null == externalReference.getType()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -189,7 +197,8 @@ public class IndividualFacade extends AbstractFacade<Individual> {
             }
         }
 
-        if (null != partialIndividual.getRelatedParty()) {
+        if (null != partialIndividual.getRelatedParty()
+                && !partialIndividual.getRelatedParty().isEmpty()) {
             for (RelatedParty relatedParty : partialIndividual.getRelatedParty()) {
                 if (null == relatedParty.getRole()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,

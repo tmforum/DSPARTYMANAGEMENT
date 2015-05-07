@@ -75,7 +75,8 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
             }
         }
 
-        if (null != newOrganization.getExternalReference()) {
+        if (null != newOrganization.getExternalReference()
+                && ! newOrganization.getExternalReference().isEmpty()) {
             for (ExternalReference reference : newOrganization.getExternalReference()) {
                 if (null == reference.getType()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -168,7 +169,8 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
             }
         }
 
-        if (null != partialOrganization.getExternalReference()) {
+        if (null != partialOrganization.getExternalReference()
+                && !partialOrganization.getExternalReference().isEmpty()) {
             for (ExternalReference reference : partialOrganization.getExternalReference()) {
                 if (null == reference.getType()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,

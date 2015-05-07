@@ -4,8 +4,6 @@
 // Toute modification apportée à ce fichier sera perdue lors de la recompilation du schéma source. 
 // Généré le : 2015.03.24 à 11:43:05 AM CET 
 //
-
-
 package org.tmf.dsmapi.individual.model;
 
 import java.io.Serializable;
@@ -25,14 +23,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-
 /**
- * <p>Classe Java pour OtherName complex type.
- * 
- * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
- * 
+ * <p>
+ * Classe Java pour OtherName complex type.
+ *
+ * <p>
+ * Le fragment de schéma suivant indique le contenu attendu figurant dans cette
+ * classe.
+ *
  * <pre>
  * &lt;complexType name="OtherName">
  *   &lt;complexContent>
@@ -52,8 +53,8 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
+ *
+ *
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "OtherName", propOrder = {
@@ -72,8 +73,7 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 @Table(name = "OTHER_NAME")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class OtherName
-    implements Serializable
-{
+        implements Serializable {
 
     private final static long serialVersionUID = 11L;
     protected String title;
@@ -85,16 +85,14 @@ public class OtherName
     protected ValidFor validFor;
     protected String nameType;
     protected String tradingName;
-    @XmlAttribute(name = "Hjid")
+    @JsonIgnore
     protected Long hjid;
 
     /**
      * Obtient la valeur de la propriété title.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     @Basic
     @Column(name = "TITLE", length = 255)
@@ -104,11 +102,9 @@ public class OtherName
 
     /**
      * Définit la valeur de la propriété title.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setTitle(String value) {
         this.title = value;
@@ -116,11 +112,9 @@ public class OtherName
 
     /**
      * Obtient la valeur de la propriété givenName.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     @Basic
     @Column(name = "GIVEN_NAME", length = 255)
@@ -130,11 +124,9 @@ public class OtherName
 
     /**
      * Définit la valeur de la propriété givenName.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setGivenName(String value) {
         this.givenName = value;
@@ -142,11 +134,9 @@ public class OtherName
 
     /**
      * Obtient la valeur de la propriété familyName.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     @Basic
     @Column(name = "FAMILY_NAME", length = 255)
@@ -156,11 +146,9 @@ public class OtherName
 
     /**
      * Définit la valeur de la propriété familyName.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setFamilyName(String value) {
         this.familyName = value;
@@ -168,11 +156,9 @@ public class OtherName
 
     /**
      * Obtient la valeur de la propriété middleName.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     @Basic
     @Column(name = "MIDDLE_NAME", length = 255)
@@ -182,11 +168,9 @@ public class OtherName
 
     /**
      * Définit la valeur de la propriété middleName.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setMiddleName(String value) {
         this.middleName = value;
@@ -194,11 +178,9 @@ public class OtherName
 
     /**
      * Obtient la valeur de la propriété fullName.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     @Basic
     @Column(name = "FULL_NAME", length = 255)
@@ -208,11 +190,9 @@ public class OtherName
 
     /**
      * Définit la valeur de la propriété fullName.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setFullName(String value) {
         this.fullName = value;
@@ -220,11 +200,9 @@ public class OtherName
 
     /**
      * Obtient la valeur de la propriété formattedName.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     @Basic
     @Column(name = "FORMATTED_NAME", length = 255)
@@ -234,11 +212,9 @@ public class OtherName
 
     /**
      * Définit la valeur de la propriété formattedName.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setFormattedName(String value) {
         this.formattedName = value;
@@ -246,11 +222,9 @@ public class OtherName
 
     /**
      * Obtient la valeur de la propriété validFor.
-     * 
-     * @return
-     *     possible object is
-     *     {@link ValidFor }
-     *     
+     *
+     * @return possible object is {@link ValidFor }
+     *
      */
     @ManyToOne(targetEntity = ValidFor.class, cascade = {
         CascadeType.ALL
@@ -262,11 +236,9 @@ public class OtherName
 
     /**
      * Définit la valeur de la propriété validFor.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link ValidFor }
-     *     
+     *
+     * @param value allowed object is {@link ValidFor }
+     *
      */
     public void setValidFor(ValidFor value) {
         this.validFor = value;
@@ -274,11 +246,9 @@ public class OtherName
 
     /**
      * Obtient la valeur de la propriété nameType.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     @Basic
     @Column(name = "NAME_TYPE", length = 255)
@@ -288,11 +258,9 @@ public class OtherName
 
     /**
      * Définit la valeur de la propriété nameType.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setNameType(String value) {
         this.nameType = value;
@@ -300,11 +268,9 @@ public class OtherName
 
     /**
      * Obtient la valeur de la propriété tradingName.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is {@link String }
+     *
      */
     @Basic
     @Column(name = "TRADING_NAME", length = 255)
@@ -314,11 +280,9 @@ public class OtherName
 
     /**
      * Définit la valeur de la propriété tradingName.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is {@link String }
+     *
      */
     public void setTradingName(String value) {
         this.tradingName = value;
@@ -326,11 +290,9 @@ public class OtherName
 
     /**
      * Obtient la valeur de la propriété hjid.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
+     *
+     * @return possible object is {@link Long }
+     *
      */
     @Id
     @Column(name = "HJID")
@@ -342,11 +304,9 @@ public class OtherName
 
     /**
      * Définit la valeur de la propriété hjid.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
+     *
+     * @param value allowed object is {@link Long }
+     *
      */
     public void setHjid(Long value) {
         this.hjid = value;

@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 
@@ -82,7 +83,7 @@ public class Medium
     protected String emailAddress;
     protected String type;
     protected String number;
-    @XmlAttribute(name = "Hjid")
+    @JsonIgnore
     protected Long hjid;
 
     /**

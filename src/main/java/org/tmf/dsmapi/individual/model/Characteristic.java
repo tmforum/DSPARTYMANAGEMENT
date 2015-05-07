@@ -22,6 +22,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 
@@ -61,7 +62,7 @@ public class Characteristic
     private final static long serialVersionUID = 11L;
     protected String name;
     protected String value;
-    @XmlAttribute(name = "Hjid")
+    @JsonIgnore
     protected Long hjid;
 
     /**
@@ -127,7 +128,7 @@ public class Characteristic
     @Id
     @Column(name = "HJID")
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @org.codehaus.jackson.annotate.JsonIgnore
+    @JsonIgnore
     public Long getHjid() {
         return hjid;
     }
