@@ -57,6 +57,7 @@ public class IndividualResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response create(Individual entity, @Context UriInfo info) throws BadUsageException, UnknownResourceException {
+        
         partyFacade.checkCreationUpdate(entity);
         partyFacade.create(entity);
         entity.setHref(info.getAbsolutePath()+ "/" + Long.toString(entity.getId()));
