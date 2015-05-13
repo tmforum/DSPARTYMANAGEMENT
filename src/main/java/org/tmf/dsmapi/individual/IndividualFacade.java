@@ -21,6 +21,7 @@ import org.tmf.dsmapi.individual.model.Disability;
 import org.tmf.dsmapi.individual.model.ExternalReference;
 import org.tmf.dsmapi.individual.model.IndividualIdentification;
 import org.tmf.dsmapi.individual.model.RelatedParty;
+import org.tmf.dsmapi.individual.model.ValidFor;
 
 /**
  *
@@ -64,7 +65,7 @@ public class IndividualFacade extends AbstractFacade<Individual> {
         }
 
         if (null != newIndividual.getDisability()
-                && ! newIndividual.getDisability().isEmpty()) {
+                && !newIndividual.getDisability().isEmpty()) {
             for (Disability disability : newIndividual.getDisability()) {
                 if (null == disability.getDisability()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -74,7 +75,7 @@ public class IndividualFacade extends AbstractFacade<Individual> {
         }
 
         if (null != newIndividual.getCharacteristic()
-                && ! newIndividual.getCharacteristic().isEmpty()) {
+                && !newIndividual.getCharacteristic().isEmpty()) {
             for (Characteristic characteristic : newIndividual.getCharacteristic()) {
                 if (null == characteristic.getName()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -88,7 +89,7 @@ public class IndividualFacade extends AbstractFacade<Individual> {
         }
 
         if (null != newIndividual.getIndividualIdentification()
-                && ! newIndividual.getIndividualIdentification().isEmpty()) {
+                && !newIndividual.getIndividualIdentification().isEmpty()) {
             for (IndividualIdentification individualIdentification : newIndividual.getIndividualIdentification()) {
                 if (null == individualIdentification.getIdentificationId()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -102,7 +103,7 @@ public class IndividualFacade extends AbstractFacade<Individual> {
         }
 
         if (null != newIndividual.getExternalReference()
-                && ! newIndividual.getExternalReference().isEmpty()) {
+                && !newIndividual.getExternalReference().isEmpty()) {
             for (ExternalReference externalReference : newIndividual.getExternalReference()) {
                 if (null == externalReference.getHref()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -116,7 +117,7 @@ public class IndividualFacade extends AbstractFacade<Individual> {
         }
 
         if (null != newIndividual.getRelatedParty()
-                && ! newIndividual.getRelatedParty().isEmpty()) {
+                && !newIndividual.getRelatedParty().isEmpty()) {
             for (RelatedParty relatedParty : newIndividual.getRelatedParty()) {
                 if (null == relatedParty.getRole()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -126,6 +127,10 @@ public class IndividualFacade extends AbstractFacade<Individual> {
                     if (null == relatedParty.getValidFor().getStartDateTime()) {
                         relatedParty.getValidFor().setStartDateTime(new Date());
                     }
+                } else {
+                    ValidFor validFor = new ValidFor();
+                    validFor.setStartDateTime(new Date());
+                    relatedParty.setValidFor(validFor);
                 }
             }
         }
@@ -140,17 +145,17 @@ public class IndividualFacade extends AbstractFacade<Individual> {
         }
 
         if (null != partialIndividual.getId()) {
-            throw new BadUsageException(ExceptionType.BAD_USAGE_OPERATOR, 
+            throw new BadUsageException(ExceptionType.BAD_USAGE_OPERATOR,
                     "id is not patchable");
         }
 
         if (null != partialIndividual.getPlaceOfBirth()) {
-            throw new BadUsageException(ExceptionType.BAD_USAGE_OPERATOR, 
+            throw new BadUsageException(ExceptionType.BAD_USAGE_OPERATOR,
                     "placeOfBirth is not patchable");
         }
 
         if (null != partialIndividual.getBirthDate()) {
-            throw new BadUsageException(ExceptionType.BAD_USAGE_OPERATOR, 
+            throw new BadUsageException(ExceptionType.BAD_USAGE_OPERATOR,
                     "birthDate is not patchable");
         }
 
@@ -160,7 +165,7 @@ public class IndividualFacade extends AbstractFacade<Individual> {
         }
 
         if (null != partialIndividual.getCharacteristic()
-                && ! partialIndividual.getCharacteristic().isEmpty()) {
+                && !partialIndividual.getCharacteristic().isEmpty()) {
             for (Characteristic characteristic : partialIndividual.getCharacteristic()) {
                 if (null == characteristic.getName()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -208,6 +213,10 @@ public class IndividualFacade extends AbstractFacade<Individual> {
                     if (null == relatedParty.getValidFor().getStartDateTime()) {
                         relatedParty.getValidFor().setStartDateTime(new Date());
                     }
+                } else {
+                    ValidFor validFor = new ValidFor();
+                    validFor.setStartDateTime(new Date());
+                    relatedParty.setValidFor(validFor);
                 }
             }
         }

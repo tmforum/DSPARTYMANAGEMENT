@@ -14,6 +14,7 @@ import org.tmf.dsmapi.commons.exceptions.UnknownResourceException;
 import org.tmf.dsmapi.commons.utils.BeanUtils;
 import org.tmf.dsmapi.individual.model.ExternalReference;
 import org.tmf.dsmapi.individual.model.Organization;
+import org.tmf.dsmapi.individual.model.ValidFor;
 import org.tmf.dsmapi.organization.event.OrganizationEventPublisherLocal;
 
 /**
@@ -49,7 +50,7 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
     public void checkCreationUpdate(Organization newOrganization) throws BadUsageException {
 
         if (null == newOrganization.getTradingName()) {
-            throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS, 
+            throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                     "tradingName is mandatory");
         }
 
@@ -76,7 +77,7 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         }
 
         if (null != newOrganization.getExternalReference()
-                && ! newOrganization.getExternalReference().isEmpty()) {
+                && !newOrganization.getExternalReference().isEmpty()) {
             for (ExternalReference reference : newOrganization.getExternalReference()) {
                 if (null == reference.getType()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -98,6 +99,10 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
                 if (null == newOrganization.getRelatedParty().getValidFor().getStartDateTime()) {
                     newOrganization.getRelatedParty().getValidFor().setStartDateTime(new Date());
                 }
+            } else {
+                ValidFor validFor = new ValidFor();
+                validFor.setStartDateTime(new Date());
+                newOrganization.getRelatedParty().setValidFor(validFor);
             }
         }
 
@@ -114,6 +119,10 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
                 if (null == newOrganization.getOrganizationParentRelationship().getValidFor().getStartDateTime()) {
                     newOrganization.getOrganizationParentRelationship().getValidFor().setStartDateTime(new Date());
                 }
+            } else {
+                ValidFor validFor = new ValidFor();
+                validFor.setStartDateTime(new Date());
+                newOrganization.getOrganizationParentRelationship().setValidFor(validFor);
             }
         }
 
@@ -130,6 +139,10 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
                 if (null == newOrganization.getOrganizationChildRelationship().getValidFor().getStartDateTime()) {
                     newOrganization.getOrganizationChildRelationship().getValidFor().setStartDateTime(new Date());
                 }
+            } else {
+                ValidFor validFor = new ValidFor();
+                validFor.setStartDateTime(new Date());
+                newOrganization.getOrganizationChildRelationship().setValidFor(validFor);
             }
         }
 
@@ -143,7 +156,7 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         }
 
         if (null != partialOrganization.getId()) {
-            throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS, 
+            throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                     "id is not patchable");
         }
 
@@ -192,6 +205,50 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
                 if (null == partialOrganization.getRelatedParty().getValidFor().getStartDateTime()) {
                     partialOrganization.getRelatedParty().getValidFor().setStartDateTime(new Date());
                 }
+            } else {
+                ValidFor validFor = new ValidFor();
+                validFor.setStartDateTime(new Date());
+                partialOrganization.getRelatedParty().setValidFor(validFor);
+            }
+        }
+
+        if (null != partialOrganization.getOrganizationParentRelationship()) {
+            if (null == partialOrganization.getOrganizationParentRelationship().getRelationshipType()) {
+                throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
+                        "organizationParentRelationship.relationshipType is mandatory");
+            }
+            if (null == partialOrganization.getOrganizationParentRelationship().getHref()) {
+                throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
+                        "organizationParentRelationship.href is mandatory");
+            }
+            if (null != partialOrganization.getOrganizationParentRelationship().getValidFor()) {
+                if (null == partialOrganization.getOrganizationParentRelationship().getValidFor().getStartDateTime()) {
+                    partialOrganization.getOrganizationParentRelationship().getValidFor().setStartDateTime(new Date());
+                }
+            } else {
+                ValidFor validFor = new ValidFor();
+                validFor.setStartDateTime(new Date());
+                partialOrganization.getOrganizationParentRelationship().setValidFor(validFor);
+            }
+        }
+
+        if (null != partialOrganization.getOrganizationChildRelationship()) {
+            if (null == partialOrganization.getOrganizationChildRelationship().getRelationshipType()) {
+                throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
+                        "organizationChildrenRelationship.relationshipType is mandatory");
+            }
+            if (null == partialOrganization.getOrganizationChildRelationship().getHref()) {
+                throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
+                        "organizationChildrenRelationship.href is mandatory");
+            }
+            if (null != partialOrganization.getOrganizationChildRelationship().getValidFor()) {
+                if (null == partialOrganization.getOrganizationChildRelationship().getValidFor().getStartDateTime()) {
+                    partialOrganization.getOrganizationChildRelationship().getValidFor().setStartDateTime(new Date());
+                }
+            } else {
+                ValidFor validFor = new ValidFor();
+                validFor.setStartDateTime(new Date());
+                partialOrganization.getOrganizationChildRelationship().setValidFor(validFor);
             }
         }
 
