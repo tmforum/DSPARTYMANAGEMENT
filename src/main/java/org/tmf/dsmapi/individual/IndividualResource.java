@@ -57,10 +57,10 @@ public class IndividualResource {
     @Consumes({"application/json"})
     @Produces({"application/json"})
     public Response create(Individual entity, @Context UriInfo info) throws BadUsageException, UnknownResourceException {
-        
+
         partyFacade.checkCreationUpdate(entity);
         partyFacade.create(entity);
-        entity.setHref(info.getAbsolutePath()+ "/" + Long.toString(entity.getId()));
+        entity.setHref(info.getAbsolutePath() + "/" + Long.toString(entity.getId()));
         partyFacade.edit(entity);
         publisher.createNotification(entity, new Date());
         // 201
@@ -160,8 +160,8 @@ public class IndividualResource {
             partyFacade.checkCreationUpdate(entity);
             partyFacade.edit(entity);
             publisher.updateNotification(entity, new Date());
-            // 201 OK + location
-            response = Response.status(Response.Status.CREATED).entity(entity).build();
+            // 200 OK + location
+            response = Response.status(Response.Status.OK).entity(entity).build();
 
         } else {
             // 404 not found
@@ -180,35 +180,29 @@ public class IndividualResource {
      */
     @DELETE
     @Path("{id}")
-    public Response delete(@PathParam("id") long id) {
+    public Response delete(@PathParam("id") long id) throws UnknownResourceException {
+        Individual entity = partyFacade.find(id);
+
+        // Event deletion
+        publisher.deleteNotification(entity, new Date());
         try {
-            Individual entity = partyFacade.find(id);
-
-            // Event deletion
-            publisher.deleteNotification(entity, new Date());
-            try {
-                //Pause for 4 seconds to finish notification
-                Thread.sleep(4000);
-            } catch (InterruptedException ex) {
-                // Log someting to the console (should never happen)
-            }
-            // remove event(s) binding to the resource
-            List<IndividualEvent> events = eventFacade.findAll();
-            for (IndividualEvent event : events) {
-                if (event.getResource().getId().equals(id)) {
-                    eventFacade.remove(event.getId());
-                }
-            }
-            //remove resource
-            partyFacade.remove(id);
-
-            // 200 
-            Response response = Response.ok(entity).build();
-            return response;
-        } catch (UnknownResourceException ex) {
-            Response response = Response.status(Response.Status.NOT_FOUND).build();
-            return response;
+            //Pause for 4 seconds to finish notification
+            Thread.sleep(4000);
+        } catch (InterruptedException ex) {
+            // Log someting to the console (should never happen)
         }
+        // remove event(s) binding to the resource
+        List<IndividualEvent> events = eventFacade.findAll();
+        for (IndividualEvent event : events) {
+            if (event.getResource().getId().equals(id)) {
+                eventFacade.remove(event.getId());
+            }
+        }
+        //remove resource
+        partyFacade.remove(id);
+
+        // 204 
+        return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     @PATCH
@@ -217,11 +211,11 @@ public class IndividualResource {
     @Produces({"application/json"})
     public Response patch(@PathParam("id") long id, Individual partialIndividual) throws BadUsageException, UnknownResourceException {
         Response response = null;
-        
+
         Individual currentIndividual = partyFacade.updateAttributs(id, partialIndividual);
 
-        // 201 OK + location
-        response = Response.status(Response.Status.CREATED).entity(currentIndividual).build();
+        // 200 OK + location
+        response = Response.status(Response.Status.OK).entity(currentIndividual).build();
 
         return response;
     }

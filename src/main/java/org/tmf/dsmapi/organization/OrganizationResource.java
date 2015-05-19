@@ -160,8 +160,8 @@ public class OrganizationResource {
             partyFacade.checkCreationUpdate(entity);
             partyFacade.edit(entity);
             publisher.updateNotification(entity, new Date());
-            // 201 OK + location
-            response = Response.status(Response.Status.CREATED).entity(entity).build();
+            // 200 OK + location
+            response = Response.status(Response.Status.OK).entity(entity).build();
 
         } else {
             // 404 not found
@@ -179,8 +179,8 @@ public class OrganizationResource {
         
         Organization currentOrganization = partyFacade.updateAttributs(id, partialOrganization);
 
-        // 201 OK + location
-        response = Response.status(Response.Status.CREATED).entity(currentOrganization).build();
+        // 200 OK + location
+        response = Response.status(Response.Status.OK).entity(currentOrganization).build();
 
         return response;
     }
