@@ -74,13 +74,13 @@ public class OrganizationAdminResource {
         // Try to persist entities
         try {
             for (Organization entitie : entities) {
+                partyFacade.checkCreationUpdate(entitie);
                 partyFacade.create(entitie);
                 entitie.setHref(info.getAbsolutePath() + "/" + Long.toString(entitie.getId()));
                 partyFacade.edit(entitie);
                 affectedRows = affectedRows + 1;
 //                publisher.createNotification(entitie, new Date());
             }
-//            affectedRows = partyFacade.create(entities);
         } catch (BadUsageException e) {
             return Response.status(Response.Status.BAD_REQUEST.getStatusCode()).build();
         }

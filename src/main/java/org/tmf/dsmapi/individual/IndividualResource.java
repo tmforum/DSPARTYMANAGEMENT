@@ -212,7 +212,7 @@ public class IndividualResource {
     public Response patch(@PathParam("id") long id, Individual partialIndividual) throws BadUsageException, UnknownResourceException {
         Response response = null;
 
-        Individual currentIndividual = partyFacade.updateAttributs(id, partialIndividual);
+        Individual currentIndividual = partyFacade.patchAttributs(id, partialIndividual);
 
         // 200 OK + location
         response = Response.status(Response.Status.OK).entity(currentIndividual).build();

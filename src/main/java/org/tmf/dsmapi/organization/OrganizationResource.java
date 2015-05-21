@@ -177,7 +177,7 @@ public class OrganizationResource {
     public Response patch(@PathParam("id") long id, Organization partialOrganization) throws BadUsageException, UnknownResourceException {
         Response response = null;
         
-        Organization currentOrganization = partyFacade.updateAttributs(id, partialOrganization);
+        Organization currentOrganization = partyFacade.patchAttributs(id, partialOrganization);
 
         // 200 OK + location
         response = Response.status(Response.Status.OK).entity(currentOrganization).build();

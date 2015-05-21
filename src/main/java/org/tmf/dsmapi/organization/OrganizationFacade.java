@@ -38,16 +38,14 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         return em;
     }
 
-    @Override
-    public void create(Organization entity) throws BadUsageException {
-        if (entity.getId() != null) {
-            throw new BadUsageException(ExceptionType.BAD_USAGE_GENERIC, "While creating Organization, id must be null");
+    public void checkCreationUpdate(Organization newOrganization) throws BadUsageException, UnknownResourceException {
+
+        if (newOrganization.getId() != null) {
+            if (this.find(newOrganization.getId()) != null) {
+                throw new BadUsageException(ExceptionType.BAD_USAGE_GENERIC,
+                        "Duplicate Exception, Organization with same id :" + newOrganization.getId() + " alreay exists");
+            }
         }
-
-        super.create(entity);
-    }
-
-    public void checkCreationUpdate(Organization newOrganization) throws BadUsageException {
 
         if (null == newOrganization.getTradingName()) {
             throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
@@ -148,7 +146,7 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
 
     }
 
-    public Organization updateAttributs(long id, Organization partialOrganization) throws UnknownResourceException, BadUsageException {
+    public Organization patchAttributs(long id, Organization partialOrganization) throws UnknownResourceException, BadUsageException {
         Organization currentOrganization = this.find(id);
 
         if (currentOrganization == null) {
