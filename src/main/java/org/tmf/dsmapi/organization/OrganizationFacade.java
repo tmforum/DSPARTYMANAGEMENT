@@ -47,28 +47,33 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
             }
         }
 
-        if (null == newOrganization.getTradingName()) {
+        if (null == newOrganization.getTradingName()
+                || newOrganization.getTradingName().isEmpty()) {
             throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                     "tradingName is mandatory");
         }
 
         if (null != newOrganization.getCharacteristic()) {
-            if (null == newOrganization.getCharacteristic().getName()) {
+            if (null == newOrganization.getCharacteristic().getName()
+                    || newOrganization.getCharacteristic().getName().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "characteristic.name is mandatory");
             }
-            if (null == newOrganization.getCharacteristic().getValue()) {
+            if (null == newOrganization.getCharacteristic().getValue()
+                    || newOrganization.getCharacteristic().getValue().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "characteristic.value is mandatory");
             }
         }
 
         if (null != newOrganization.getOrganizationIdentification()) {
-            if (null == newOrganization.getOrganizationIdentification().getType()) {
+            if (null == newOrganization.getOrganizationIdentification().getType()
+                    || newOrganization.getOrganizationIdentification().getType().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationIdentification.type is mandatory");
             }
-            if (null == newOrganization.getOrganizationIdentification().getIdentificationId()) {
+            if (null == newOrganization.getOrganizationIdentification().getIdentificationId()
+                    || newOrganization.getOrganizationIdentification().getIdentificationId().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationIdentification.identificationId is mandatory");
             }
@@ -77,11 +82,13 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         if (null != newOrganization.getExternalReference()
                 && !newOrganization.getExternalReference().isEmpty()) {
             for (ExternalReference reference : newOrganization.getExternalReference()) {
-                if (null == reference.getType()) {
+                if (null == reference.getType()
+                        || reference.getType().isEmpty()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                             "externalReference.type is mandatory");
                 }
-                if (null == reference.getHref()) {
+                if (null == reference.getHref()
+                        || reference.getHref().isEmpty()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                             "externalReference.href is mandatory");
                 }
@@ -89,7 +96,8 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         }
 
         if (null != newOrganization.getRelatedParty()) {
-            if (null == newOrganization.getRelatedParty().getRole()) {
+            if (null == newOrganization.getRelatedParty().getRole()
+                    || newOrganization.getRelatedParty().getRole().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "relatedParty.role is mandatory");
             }
@@ -105,11 +113,13 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         }
 
         if (null != newOrganization.getOrganizationParentRelationship()) {
-            if (null == newOrganization.getOrganizationParentRelationship().getRelationshipType()) {
+            if (null == newOrganization.getOrganizationParentRelationship().getRelationshipType()
+                    || newOrganization.getOrganizationParentRelationship().getRelationshipType().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationParentRelationship.relationshipType is mandatory");
             }
-            if (null == newOrganization.getOrganizationParentRelationship().getHref()) {
+            if (null == newOrganization.getOrganizationParentRelationship().getHref()
+                    || newOrganization.getOrganizationParentRelationship().getHref().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationParentRelationship.href is mandatory");
             }
@@ -125,11 +135,13 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         }
 
         if (null != newOrganization.getOrganizationChildRelationship()) {
-            if (null == newOrganization.getOrganizationChildRelationship().getRelationshipType()) {
+            if (null == newOrganization.getOrganizationChildRelationship().getRelationshipType()
+                    || newOrganization.getOrganizationChildRelationship().getRelationshipType().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationChildrenRelationship.relationshipType is mandatory");
             }
-            if (null == newOrganization.getOrganizationChildRelationship().getHref()) {
+            if (null == newOrganization.getOrganizationChildRelationship().getHref()
+                    || newOrganization.getOrganizationChildRelationship().getHref().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationChildrenRelationship.href is mandatory");
             }
@@ -159,22 +171,26 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         }
 
         if (null != partialOrganization.getCharacteristic()) {
-            if (null == partialOrganization.getCharacteristic().getName()) {
+            if (null == partialOrganization.getCharacteristic().getName()
+                    || partialOrganization.getCharacteristic().getName().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "characteristic.name is mandatory");
             }
-            if (null == partialOrganization.getCharacteristic().getValue()) {
+            if (null == partialOrganization.getCharacteristic().getValue()
+                    || partialOrganization.getCharacteristic().getValue().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "characteristic.value is mandatory");
             }
         }
 
         if (null != partialOrganization.getOrganizationIdentification()) {
-            if (null == partialOrganization.getOrganizationIdentification().getType()) {
+            if (null == partialOrganization.getOrganizationIdentification().getType()
+                    || partialOrganization.getOrganizationIdentification().getType().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationIdentification.type is mandatory");
             }
-            if (null == partialOrganization.getOrganizationIdentification().getIdentificationId()) {
+            if (null == partialOrganization.getOrganizationIdentification().getIdentificationId()
+                    || partialOrganization.getOrganizationIdentification().getIdentificationId().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationIdentification.identificationId is mandatory");
             }
@@ -183,11 +199,13 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         if (null != partialOrganization.getExternalReference()
                 && !partialOrganization.getExternalReference().isEmpty()) {
             for (ExternalReference reference : partialOrganization.getExternalReference()) {
-                if (null == reference.getType()) {
+                if (null == reference.getType()
+                        || reference.getType().isEmpty()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                             "externalReference.type is mandatory");
                 }
-                if (null == reference.getHref()) {
+                if (null == reference.getHref()
+                        || reference.getHref().isEmpty()) {
                     throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                             "externalReference.href is mandatory");
                 }
@@ -195,7 +213,8 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         }
 
         if (null != partialOrganization.getRelatedParty()) {
-            if (null == partialOrganization.getRelatedParty().getRole()) {
+            if (null == partialOrganization.getRelatedParty().getRole()
+                    || partialOrganization.getRelatedParty().getRole().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "relatedParty.role is mandatory");
             }
@@ -211,11 +230,13 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         }
 
         if (null != partialOrganization.getOrganizationParentRelationship()) {
-            if (null == partialOrganization.getOrganizationParentRelationship().getRelationshipType()) {
+            if (null == partialOrganization.getOrganizationParentRelationship().getRelationshipType()
+                    || partialOrganization.getOrganizationParentRelationship().getRelationshipType().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationParentRelationship.relationshipType is mandatory");
             }
-            if (null == partialOrganization.getOrganizationParentRelationship().getHref()) {
+            if (null == partialOrganization.getOrganizationParentRelationship().getHref()
+                    || partialOrganization.getOrganizationParentRelationship().getHref().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationParentRelationship.href is mandatory");
             }
@@ -231,11 +252,13 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         }
 
         if (null != partialOrganization.getOrganizationChildRelationship()) {
-            if (null == partialOrganization.getOrganizationChildRelationship().getRelationshipType()) {
+            if (null == partialOrganization.getOrganizationChildRelationship().getRelationshipType()
+                    || partialOrganization.getOrganizationChildRelationship().getRelationshipType().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationChildrenRelationship.relationshipType is mandatory");
             }
-            if (null == partialOrganization.getOrganizationChildRelationship().getHref()) {
+            if (null == partialOrganization.getOrganizationChildRelationship().getHref()
+                    || partialOrganization.getOrganizationChildRelationship().getHref().isEmpty()) {
                 throw new BadUsageException(ExceptionType.BAD_USAGE_MANDATORY_FIELDS,
                         "organizationChildrenRelationship.href is mandatory");
             }
