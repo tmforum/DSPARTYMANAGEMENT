@@ -74,7 +74,7 @@ public class OrganizationAdminResource {
         // Try to persist entities
         try {
             for (Organization entitie : entities) {
-                partyFacade.checkCreationUpdate(entitie);
+                partyFacade.checkCreationUpdate(entitie,"CREATE");
                 partyFacade.create(entitie);
                 entitie.setHref(info.getAbsolutePath() + "/" + Long.toString(entitie.getId()));
                 partyFacade.edit(entitie);

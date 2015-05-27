@@ -72,7 +72,7 @@ public class IndividualAdminResource {
         // Try to persist entities
         try {
             for (Individual entitie : entities) {
-                partyFacade.checkCreationUpdate(entitie);
+                partyFacade.checkCreationUpdate(entitie, "CREATE");
                 partyFacade.create(entitie);
                 entitie.setHref(info.getAbsolutePath() + "/" + Long.toString(entitie.getId()));
                 partyFacade.edit(entitie);

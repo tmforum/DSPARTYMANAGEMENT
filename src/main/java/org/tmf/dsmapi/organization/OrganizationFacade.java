@@ -38,12 +38,14 @@ public class OrganizationFacade extends AbstractFacade<Organization> {
         return em;
     }
 
-    public void checkCreationUpdate(Organization newOrganization) throws BadUsageException, UnknownResourceException {
+    public void checkCreationUpdate(Organization newOrganization, String action) throws BadUsageException, UnknownResourceException {
 
-        if (newOrganization.getId() != null) {
-            if (this.find(newOrganization.getId()) != null) {
-                throw new BadUsageException(ExceptionType.BAD_USAGE_GENERIC,
-                        "Duplicate Exception, Organization with same id :" + newOrganization.getId() + " alreay exists");
+        if (action.equalsIgnoreCase("CREATE")) {
+            if (newOrganization.getId() != null) {
+                if (this.find(newOrganization.getId()) != null) {
+                    throw new BadUsageException(ExceptionType.BAD_USAGE_GENERIC,
+                            "Duplicate Exception, Organization with same id :" + newOrganization.getId() + " alreay exists");
+                }
             }
         }
 

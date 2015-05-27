@@ -58,7 +58,7 @@ public class OrganizationResource {
         
         
      
-        partyFacade.checkCreationUpdate(entity);
+        partyFacade.checkCreationUpdate(entity,"CREATE");
         partyFacade.create(entity);
         entity.setHref(info.getAbsolutePath()+ "/" + Long.toString(entity.getId()));
         partyFacade.edit(entity);
@@ -157,7 +157,7 @@ public class OrganizationResource {
         Organization party = partyFacade.find(id);
         if (party != null) {
             entity.setId(id);
-            partyFacade.checkCreationUpdate(entity);
+            partyFacade.checkCreationUpdate(entity, "UPDATE");
             partyFacade.edit(entity);
             publisher.updateNotification(entity, new Date());
             // 200 OK + location
